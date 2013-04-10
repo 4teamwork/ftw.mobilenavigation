@@ -19,14 +19,14 @@
   min-width: 16px;
   height: 16px;
 }
-#portal-globalnav.mobileNavigation a.loadChildren,
-#portal-globalnav.mobileNavigation a.loadChildren:hover {
+#portal-globalnav.mobileNavigation li a.loadChildren,
+#portal-globalnav.mobileNavigation li a.loadChildren:hover {
   background: url(++resource++ftw.mobilenavigation/expand-navi.png) no-repeat center center;
 }
-#portal-globalnav.mobileNavigation .expanded > a.loadChildren {
+#portal-globalnav.mobileNavigation li.expanded > a.loadChildren {
   background: url(++resource++ftw.mobilenavigation/collapse-navi.png) no-repeat center center;
 }
-#portal-globalnav.mobileNavigation .loading > a.loadChildren {
+#portal-globalnav.mobileNavigation li.loading > a.loadChildren {
   background: url(++resource++ftw.mobilenavigation/spinner.gif) no-repeat center center;
 }
 #portal-globalnav.mobileNavigation li > ul {
@@ -43,11 +43,11 @@
 }
 
 /* Overwrite default selected styling in globalnav */
-#portal-globalnav .selected a, #portal-globalnav a:hover {
+#portal-globalnav.mobileNavigation .selected a, #portal-globalnav a:hover {
   background: #DDDDDD;
   color: #205C90;
 }
-#portal-globalnav .selected > a, #portal-globalnav > a:hover {
+#portal-globalnav.mobileNavigation .selected > a, #portal-globalnav > a:hover {
   background: #205C90;
   color: #FFFFFF;
 }
