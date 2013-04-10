@@ -7,6 +7,9 @@
 }
 #portal-globalnav.mobileNavigation li a {
   display: block;
+  padding: 1em;
+  border: none;
+  border-top: 1px solid #000;
 }
 #portal-globalnav.mobileNavigation li a.loadChildren {
   position: absolute;
@@ -33,10 +36,10 @@
   display: block;
 }
 #portal-globalnav.mobileNavigation li.level1 a {
-  margin-left: 1em;
+  margin-left: 1.5em;
 }
 #portal-globalnav.mobileNavigation li.level2 a {
-  margin-left: 2em;
+  margin-left: 3em;
 }
 
 /* Overwrite default selected styling in globalnav */
