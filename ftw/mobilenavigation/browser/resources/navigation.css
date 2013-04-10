@@ -1,0 +1,39 @@
+#portal-globalnav.mobileNavigation {
+  width: 100%;
+}
+#portal-globalnav.mobileNavigation li {
+  display: block;
+  position: relative;
+}
+#portal-globalnav.mobileNavigation li a {
+  display: block;
+}
+#portal-globalnav.mobileNavigation li a.loadChildren {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+}
+#portal-globalnav.mobileNavigation a.loadChildren,
+#portal-globalnav.mobileNavigation a.loadChildren:hover {
+  background: url(++resource++ftw.mobilenavigation/expand-navi.png) no-repeat center center;
+}
+#portal-globalnav.mobileNavigation .expanded > a.loadChildren {
+  background: url(++resource++ftw.mobilenavigation/collapse-navi.png) no-repeat center center;
+}
+#portal-globalnav.mobileNavigation .loading > a.loadChildren {
+  background: url(++resource++ftw.mobilenavigation/spinner.gif) no-repeat center center;
+}
+#portal-globalnav.mobileNavigation li > ul {
+  display: none;
+}
+#portal-globalnav.mobileNavigation li.expanded > ul {
+  display: block;
+}
+#portal-globalnav.mobileNavigation li.level1 a {
+  margin-left: 1em;
+}
+#portal-globalnav.mobileNavigation li.level2 a {
+  margin-left: 2em;
+}

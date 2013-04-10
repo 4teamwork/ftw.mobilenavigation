@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="ftw.mobilenavigation"
+         interface="ftw.mobilenavigation.interfaces.IFtwMobileNavigationLayer" />
+</layers>
