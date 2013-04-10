@@ -13,6 +13,7 @@
   top: 0;
   right: 0;
   width: 16px;
+  min-width: 16px;
   height: 16px;
 }
 #portal-globalnav.mobileNavigation a.loadChildren,
@@ -36,4 +37,14 @@
 }
 #portal-globalnav.mobileNavigation li.level2 a {
   margin-left: 2em;
+}
+
+/* Overwrite default selected styling in globalnav */
+#portal-globalnav .selected a, #portal-globalnav a:hover {
+  background: #DDDDDD;
+  color: #205C90;
+}
+#portal-globalnav .selected > a, #portal-globalnav > a:hover {
+  background: #205C90;
+  color: #FFFFFF;
 }
