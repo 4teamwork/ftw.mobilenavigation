@@ -43,11 +43,13 @@
 }
 
 /* Overwrite default selected styling in globalnav */
-#portal-globalnav.mobileNavigation .selected a, #portal-globalnav a:hover {
+#portal-globalnav.mobileNavigation .selected a,
+#portal-globalnav.mobileNavigation a:hover {
   background: #DDDDDD;
   color: #205C90;
 }
-#portal-globalnav.mobileNavigation .selected > a, #portal-globalnav > a:hover {
+#portal-globalnav.mobileNavigation .selected > a,
+#portal-globalnav.mobileNavigation > a:hover {
   background: #205C90;
   color: #FFFFFF;
 }
