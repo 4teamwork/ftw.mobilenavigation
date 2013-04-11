@@ -5,7 +5,7 @@ function load_children(element, parent) {
   if (parent.hasClass('level1')) {level = 2;}
   if (parent.hasClass('level2')) {level = 3;}
 
-  jq.ajax({
+  $.ajax({
     type : 'POST',
     url : element.attr('href'),
     data: {level: level},
@@ -44,7 +44,6 @@ jQuery(function($) {
     var parent = me.parent('li');
 
     var children = parent.find('ul:first');
-    console.info(children);
     if (children.length == 0) {
       load_children(me, parent);
     }
