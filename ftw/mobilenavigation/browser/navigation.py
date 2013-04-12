@@ -6,6 +6,9 @@ class UpdateMobileNavigation(BrowserView):
 
     def __call__(self):
         subnavi = '<ul>'
+        level = int(self.request.form.get('level', '1'))
+        if level == 0:
+            subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
         for obj in self.sub_objects(self.context):
             subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
                 self.get_css_classes(obj),

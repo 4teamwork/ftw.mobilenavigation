@@ -1,9 +1,12 @@
 function load_children(element, parent) {
-  parent.addClass('loading');
-
-  var level = 1
+  var level = 0
+  if (parent.hasClass('level0')) {level = 1;}
   if (parent.hasClass('level1')) {level = 2;}
   if (parent.hasClass('level2')) {level = 3;}
+
+  if (level > 0) {
+    parent.addClass('loading');
+  }
 
   $.ajax({
     type : 'POST',
@@ -11,10 +14,15 @@ function load_children(element, parent) {
     data: {level: level},
     success : function(data, textStatus, XMLHttpRequest) {
       if (textStatus == 'success') {
-        parent.removeClass('loading');
         var result = $(data);
         load_navi_buttons(result);
-        parent.append(result);
+        if (level == 0) {
+          parent.replaceWith(result);
+        }
+        else {
+          parent.removeClass('loading');
+          parent.append(result);
+        }
       }
     }
   });
@@ -33,7 +41,8 @@ function load_navi_buttons(section) {
 jQuery(function($) {
 
   if (window.matchMedia("(max-width: 767px)").matches) {
-    $('#portal-globalnav').addClass('mobileNavigation');
+    // load globalnav buttons
+    load_children($('#m-toggle-navi'), $('#portal-globalnav'));
   }
 
   load_navi_buttons($('#portal-globalnav.mobileNavigation'));
