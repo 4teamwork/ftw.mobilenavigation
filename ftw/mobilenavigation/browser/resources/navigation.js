@@ -33,19 +33,36 @@ function load_navi_buttons(section) {
     element = $(b);
     if (!element.hasClass('noChildren')) {
       var href = element.find('a:first').attr('href') + '/load_children';
-      element.append($('<a class="loadChildren" href="'+href+'"></a>'));
+      element.append($('<a class="loadChildren" href="'+href+'">&nbsp;</a>'));
     }
   });
 }
 
+function initialize_mobile_navi() {
+  var body = $("body");
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    if (!body.hasClass('mobileNaviLoaded')) {
+      // load globalnav buttons
+      load_children($('#m-toggle-navi'), $('#portal-globalnav'));
+      load_navi_buttons($('#portal-globalnav.mobileNavigation'));
+      body.addClass('mobileNaviLoaded');
+    }
+    else {
+      $('#portal-globalnav').addClass('mobileNavigation');
+    }
+  }
+  else {
+    $('#portal-globalnav').removeClass('mobileNavigation');
+  }
+}
+
 jQuery(function($) {
 
-  if (window.matchMedia("(max-width: 767px)").matches) {
-    // load globalnav buttons
-    load_children($('#m-toggle-navi'), $('#portal-globalnav'));
-  }
+  initialize_mobile_navi();
 
-  load_navi_buttons($('#portal-globalnav.mobileNavigation'));
+  $(window).resize(function() {
+    initialize_mobile_navi();
+  });
 
   $('a.loadChildren').live('click', function(e){
     e.preventDefault();
