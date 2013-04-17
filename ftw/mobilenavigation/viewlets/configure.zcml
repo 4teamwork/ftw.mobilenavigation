@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:viewlet
+      name="ftw.mobilenavigation.buttons"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".buttons.MobileButtons"
+      permission="zope2.View"
+      />
+
+</configure>

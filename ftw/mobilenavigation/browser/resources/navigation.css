@@ -1,6 +1,44 @@
-#portal-globalnav.mobileNavigation {
+/* @group buttons */
+
+.mobileButtons {
+  position: absolute;
   width: 100%;
+  background-color: #AAAAAA;
+  top: 0;
+  left: 0;
+  display: none;
 }
+.mobileButtons a {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  display: block;
+  background: url(++resource++ftw.mobilenavigation/mobile_buttons.png) no-repeat center center #aaa;
+  float: right;
+}
+.mobileButtons a.selected {
+  background-color: #000000;
+}
+.mobileButtons #toggle_navigation {
+  background-position: 6px 6px;
+}
+.mobileButtons #toggle_usermenu { background-position: 6px -66px; }
+.mobileButtons #toggle_search { background-position: 6px -138px; }
+/* @end group */
+
+
+/* @group mobile navigation */
+
+#portal-globalnav.mobileNavigation {
+  position:absolute;
+  top: 0;
+  left: 0;
+  margin-top: 36px;
+  width: 100%;
+  display: none;
+}
+
+/* @end */
 #portal-globalnav.mobileNavigation li {
   display: block;
   position: relative;
@@ -53,3 +91,44 @@
   background: #205C90;
   color: #FFFFFF;
 }
+
+
+/* @group responsive */
+
+@media screen and (max-width: 767px) {
+  .mobileButtons {
+    display: block;
+    z-index: 4;
+  }
+  #portal-globalnav,
+  #portal-personaltools dt.actionMenuHeader,
+  #portal-searchbox {
+    display: none;
+  }
+
+  #portal-personaltools dd.actionMenuContent {
+    margin-top: 34px;
+  }
+  #portal-searchbox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 34px;
+    background: #EEE;
+    z-index: 3;
+    padding: 1em;
+  }
+}
+@media screen and (min-width: 767px) {
+  /* fix navi (ugly) */
+  #portal-globalnav {
+    display: block !important;
+  }
+  #portal-globalnav > li > ul,
+  #portal-globalnav .loadChildren {
+    display: none !important;
+  }
+}
+
+
+/* @end */

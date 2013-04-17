@@ -5,6 +5,7 @@
     i18n_domain="ftw.mobilenavigation">
 
   <include package=".browser" />
+  <include package=".viewlets" />
 
   <!-- <i18n:registerTranslations directory="locales" /> -->
 
