@@ -56,6 +56,16 @@ function initialize_mobile_navi() {
   }
 }
 
+
+function close_opened(element) {
+  $('.mobileButtons a.selected').each(function(a,b){
+    var object = $(b);
+    if (object.attr('id') != element.attr('id')) {
+      object.click();
+    }
+  });
+}
+
 jQuery(function($) {
 
   initialize_mobile_navi();
@@ -66,28 +76,25 @@ jQuery(function($) {
 
   $('#toggle_navigation').click(function(e){
     e.preventDefault();
-    // close opened
-    $('#toggle_usermenu.selected, #toggle_search.selected').click();
-
-    $(this).toggleClass('selected');
+    var me = $(this)
+    close_opened(me);
+    me.toggleClass('selected');
     $('#portal-globalnav').toggle();
   });
 
   $('#toggle_usermenu').click(function(e){
     e.preventDefault();
-    // close opened
-    $('#toggle_navigation.selected, #toggle_search.selected').click();
-
-    $(this).toggleClass('selected');
+    var me = $(this)
+    close_opened(me);
+    me.toggleClass('selected');
     $('#portal-personaltools dd.actionMenuContent').toggle();
   });
 
   $('#toggle_search').click(function(e){
     e.preventDefault();
-    // close opened
-    $('#toggle_navigation.selected, #toggle_usermenu.selected').click();
-
-    $(this).toggleClass('selected');
+    var me = $(this)
+    close_opened(me);
+    me.toggleClass('selected');
     $('#portal-searchbox').toggle();
   });
 

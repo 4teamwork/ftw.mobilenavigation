@@ -2,10 +2,9 @@
 
 .mobileButtons {
   position: absolute;
-  width: 100%;
   background-color: #AAAAAA;
   top: 0;
-  left: 0;
+  right: 0;
   display: none;
 }
 .mobileButtons a {
@@ -24,6 +23,7 @@
 }
 .mobileButtons #toggle_usermenu { background-position: 6px -66px; }
 .mobileButtons #toggle_search { background-position: 6px -138px; }
+
 /* @end group */
 
 
@@ -32,7 +32,6 @@
 #portal-globalnav.mobileNavigation {
   position:absolute;
   top: 0;
-  left: 0;
   margin-top: 36px;
   width: 100%;
   display: none;
