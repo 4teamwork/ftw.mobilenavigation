@@ -9,7 +9,7 @@ class UpdateMobileNavigation(BrowserView):
         level = int(self.request.form.get('level', '1'))
         if level == 0:
             subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
-        for obj in self.sub_objects(self.context):
+        for obj in self.sub_objects(self.context, level=level):
             subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
                 self.get_css_classes(obj),
                 obj.absolute_url(),
@@ -17,10 +17,15 @@ class UpdateMobileNavigation(BrowserView):
         subnavi += '</ul>'
         return subnavi
 
-    def sub_objects(self, parent):
+    def sub_objects(self, parent, level=0):
         """ Returns the sub objects of a given parent.
         Checks if the objects should be listed in navi.
         """
+        # if the parent is the portal and its not level 0,
+        # return no children
+        portal = getToolByName(self.context, 'portal_url').getPortalObject()
+        if parent == portal and level > 0:
+            return []
         objs = []
         properties = getToolByName(self.context, 'portal_properties')
         hidden_types = properties.navtree_properties.metaTypesNotToList
