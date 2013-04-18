@@ -105,7 +105,8 @@
     display: none;
   }
 
-  #portal-personaltools dd.actionMenuContent {
+  #portal-personaltools {
+    position: absolute;
     margin-top: 34px;
   }
   #portal-searchbox {
