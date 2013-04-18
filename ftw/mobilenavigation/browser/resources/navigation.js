@@ -39,20 +39,22 @@ function load_navi_buttons(section) {
 }
 
 function initialize_mobile_navi() {
-  var body = $("body");
-  if (window.matchMedia("(max-width: 767px)").matches) {
-    if (!body.hasClass('mobileNaviLoaded')) {
-      // load globalnav buttons
-      load_children($('#toggle_navigation'), $('#portal-globalnav'));
-      load_navi_buttons($('#portal-globalnav.mobileNavigation'));
-      body.addClass('mobileNaviLoaded');
+  if (!$.browser.msie) {
+    var body = $("body");
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      if (!body.hasClass('mobileNaviLoaded')) {
+        // load globalnav buttons
+        load_children($('#toggle_navigation'), $('#portal-globalnav'));
+        load_navi_buttons($('#portal-globalnav.mobileNavigation'));
+        body.addClass('mobileNaviLoaded');
+      }
+      else {
+        $('#portal-globalnav').addClass('mobileNavigation');
+      }
     }
     else {
-      $('#portal-globalnav').addClass('mobileNavigation');
+      $('#portal-globalnav').removeClass('mobileNavigation');
     }
-  }
-  else {
-    $('#portal-globalnav').removeClass('mobileNavigation');
   }
 }
 
