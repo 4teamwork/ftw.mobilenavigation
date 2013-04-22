@@ -10,7 +10,7 @@
 .mobileButtons a {
   width: 24px;
   height: 24px;
-  padding: 6px;
+  padding: 16px;
   display: block;
   background: url(++resource++ftw.mobilenavigation/mobile_buttons.png) no-repeat center center #aaa;
   float: right;
@@ -19,25 +19,23 @@
   background-color: #000000;
 }
 .mobileButtons #toggle_navigation {
-  background-position: 6px 6px;
+  background-position: 16px 16px;
 }
-.mobileButtons #toggle_usermenu { background-position: 6px -66px; }
-.mobileButtons #toggle_search { background-position: 6px -138px; }
+.mobileButtons #toggle_usermenu { background-position: 16px -56px; }
+.mobileButtons #toggle_search { background-position: 16px -128px; }
 
 /* @end group */
-
 
 /* @group mobile navigation */
 
 #portal-globalnav.mobileNavigation {
   position:absolute;
   top: 0;
-  margin-top: 36px;
+  margin-top: 56px;
   width: 100%;
   display: none;
 }
 
-/* @end */
 #portal-globalnav.mobileNavigation li {
   display: block;
   position: relative;
@@ -47,6 +45,12 @@
   padding: 1em;
   border: none;
   border-top: 1px solid #000;
+  margin-right: 42px;
+  overflow: hidden;
+}
+#portal-globalnav.mobileNavigation li.noChildren a,
+#portal-globalnav.mobileNavigation li a.loadChildren {
+  margin-right: 0;
 }
 #portal-globalnav.mobileNavigation li a.loadChildren {
   position: absolute;
@@ -78,6 +82,9 @@
 #portal-globalnav.mobileNavigation li.level2 a {
   margin-left: 3em;
 }
+#portal-globalnav.mobileNavigation li a.loadChildren:hover {
+  background-color: #DDDDDD;
+}
 
 /* Overwrite default selected styling in globalnav */
 #portal-globalnav.mobileNavigation .selected a,
@@ -91,6 +98,7 @@
   color: #FFFFFF;
 }
 
+/* @end */
 
 /* @group responsive */
 
@@ -107,13 +115,14 @@
 
   #portal-personaltools {
     position: absolute;
-    margin-top: 34px;
+    margin-top: 52px;
+    background-color: transparent;
   }
   #portal-searchbox {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 34px;
+    margin-top: 54px;
     background: #EEE;
     z-index: 3;
     padding: 1em;
@@ -129,6 +138,5 @@
     display: none !important;
   }
 }
-
 
 /* @end */
