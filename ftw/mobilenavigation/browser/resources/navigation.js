@@ -98,6 +98,7 @@ jQuery(function($) {
     close_opened(me);
     me.toggleClass('selected');
     $('#portal-searchbox').toggle();
+    $('#portal-searchbox input.searchField').focus();
   });
 
   $('a.loadChildren').live('click', function(e){
