@@ -56,9 +56,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  padding: 0;
 }
 #portal-globalnav.mobileNavigation li a.loadChildren,
 #portal-globalnav.mobileNavigation li a.loadChildren:hover {
