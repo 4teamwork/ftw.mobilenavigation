@@ -1,6 +1,6 @@
 from plone.app.layout.viewlets.common import ViewletBase
 from zope.component import getMultiAdapter
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class MobileButtons(ViewletBase):
