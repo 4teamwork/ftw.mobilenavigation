@@ -34,6 +34,7 @@
   margin-top: 56px;
   width: 100%;
   display: none;
+  z-index: 3;
 }
 
 #portal-globalnav.mobileNavigation li {
