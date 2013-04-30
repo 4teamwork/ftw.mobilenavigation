@@ -1,7 +1,13 @@
 Introduction
 ============
 
-This product defines a special navigation loading the subnavigation using AJAX.
+This product helps to create a responsive design.
+There are following mobile_buttons in portal_actions defined:
+
+- Toggle personaltools (default personaltools)
+- Toggle searchbox (default searchbox)
+- Toggle special navigation (special navigation, using AJAX to expand children)
+
 
 Links
 =====
