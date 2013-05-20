@@ -32,8 +32,9 @@ class UpdateMobileNavigation(BrowserView):
         for brain in parent.getFolderContents():
             if brain.portal_type not in hidden_types:
                 obj = brain.getObject()
-                if not obj.getExcludeFromNav():
-                    objs.append(obj)
+                if hasattr(obj, 'getExcludeFromNav'):
+                    if not obj.getExcludeFromNav():
+                        objs.append(obj)
         return objs
 
     def get_css_classes(self, obj):
