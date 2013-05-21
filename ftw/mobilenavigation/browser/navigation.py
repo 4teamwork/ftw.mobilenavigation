@@ -31,11 +31,8 @@ class UpdateMobileNavigation(BrowserView):
         hidden_types = properties.navtree_properties.metaTypesNotToList
         for brain in parent.getFolderContents():
             if brain.portal_type not in hidden_types:
-                obj = brain.getObject()
-                if hasattr(obj, 'getExcludeFromNav'):
-                    if not obj.getExcludeFromNav():
-                        objs.append(obj)
-                else:
+                if getattr(brain, 'exclude_from_nav', False) is False:
+                    obj = brain.getObject()
                     objs.append(obj)
         return objs
 
