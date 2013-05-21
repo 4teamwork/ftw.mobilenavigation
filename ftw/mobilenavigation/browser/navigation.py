@@ -35,6 +35,8 @@ class UpdateMobileNavigation(BrowserView):
                 if hasattr(obj, 'getExcludeFromNav'):
                     if not obj.getExcludeFromNav():
                         objs.append(obj)
+                else:
+                    objs.append(obj)
         return objs
 
     def get_css_classes(self, obj):
