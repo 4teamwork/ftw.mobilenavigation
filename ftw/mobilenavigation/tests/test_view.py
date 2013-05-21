@@ -53,6 +53,7 @@ class TestView(unittest.TestCase):
         # No link to toggle children if the subfolder is excluded from navigation
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
         self.portal.f1.subfolder1.setExcludeFromNav(True)
+        self.portal.f1.subfolder1.reindexObject()
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
