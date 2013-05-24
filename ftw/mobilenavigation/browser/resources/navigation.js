@@ -70,6 +70,9 @@ function close_opened(element) {
 
 jQuery(function($) {
 
+  // Hide iphone scrollbar on load
+  $('body').scrollTop(1);
+
   initialize_mobile_navi();
 
   $(window).resize(function() {

@@ -4,11 +4,11 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Hide iphone scrollbar on loading a new page.
+  [Julian Infanger]
 
 
 1.0 (2013-04-30)
 ----------------
 
 - Initial release
-
