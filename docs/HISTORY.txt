@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.1 (unreleased)
-----------------
+1.1.1 (2013-06-05)
+------------------
 
 - Use javascript fallback for old browsers.
   [Julian Infanger]
