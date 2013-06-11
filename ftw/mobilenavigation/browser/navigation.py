@@ -1,3 +1,4 @@
+import Missing
 from Products.CMFCore.utils import getToolByName
 from zope.publisher.browser import BrowserView
 
@@ -31,7 +32,7 @@ class UpdateMobileNavigation(BrowserView):
         hidden_types = properties.navtree_properties.metaTypesNotToList
         for brain in parent.getFolderContents():
             if brain.portal_type not in hidden_types:
-                if getattr(brain, 'exclude_from_nav', False) is False:
+                if getattr(brain, 'exclude_from_nav', False) in [Missing.Value, False]:
                     obj = brain.getObject()
                     objs.append(obj)
         return objs

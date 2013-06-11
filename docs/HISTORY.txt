@@ -4,7 +4,9 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed condition to show dexterity objects.
+  Also check index for Missing.Value.
+  [Julian Infanger]
 
 
 1.1.1 (2013-06-05)
