@@ -4,6 +4,9 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
+- Get navigation root for navigation action instead of portal_url.
+  [Julian Infanger]
+
 - Fixed condition to show dexterity objects.
   Also check index for Missing.Value.
   [Julian Infanger]

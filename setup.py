@@ -41,6 +41,7 @@ setup(name='ftw.mobilenavigation',
 
       install_requires=[
         'setuptools',
+        'ftw.upgrade',
         'Missing',
         ],
       tests_require=tests_require,

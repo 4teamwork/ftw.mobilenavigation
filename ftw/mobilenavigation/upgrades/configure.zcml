@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="plonetheme.teamraum">
+
+    <!-- 1009 -> 1010 -->
+    <genericsetup:upgradeStep
+        title="Fix navigation action url."
+        description=""
+        source="1009"
+        destination="1010"
+        handler="ftw.mobilenavigation.upgrades.to1010.Upgrade"
+        profile="ftw.mobilenavigation:default"
+        />
+
+    <genericsetup:registerProfile
+        name="1010"
+        title="plonetheme.teamraum.upgrades.2001"
+        description=""
+        directory="profiles/2001"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>
