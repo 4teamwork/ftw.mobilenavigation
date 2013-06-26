@@ -33,7 +33,7 @@
             i18n:domain="ftw.mobilenavigation">
       <property name="title" i18n:translate=""></property>
       <property name="description" i18n:translate=""></property>
-      <property name="url_expr">python:portal.portal_url() + '/load_children'</property>
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/load_children</property>
       <property name="icon_expr"></property>
       <property name="available_expr"></property>
       <property name="permissions">
