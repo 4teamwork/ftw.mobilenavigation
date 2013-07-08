@@ -16,4 +16,11 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="*"
+      name="slider_navi"
+      class=".navigation.SliderNavigation"
+      permission="zope2.View"
+      />
+
 </configure>

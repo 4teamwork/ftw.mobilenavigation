@@ -18,4 +18,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="slide"
+      title="ftw.mobilenavigation: slide navigation"
+      directory="profiles/slide"
+      description="Installs the ftw.mobilenavigation package and enables slide navigation"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>

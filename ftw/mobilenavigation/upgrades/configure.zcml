@@ -15,11 +15,31 @@
 
     <genericsetup:registerProfile
         name="1010"
-        title="plonetheme.teamraum.upgrades.2001"
+        title="ftw.mobilenavigation.upgrades.2001"
         description=""
-        directory="profiles/2001"
+        directory="profiles/1010"
         for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
+
+    <!-- 1010 -> 1100 -->
+    <genericsetup:upgradeStep
+        title="Enable expandable navigation as default."
+        description=""
+        source="1010"
+        destination="1100"
+        handler="ftw.mobilenavigation.upgrades.to1100.Upgrade"
+        profile="ftw.mobilenavigation:default"
+        />
+
+    <genericsetup:registerProfile
+        name="1100"
+        title="ftw.mobilenavigation.upgrades.1100"
+        description=""
+        directory="profiles/1100"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
 
 </configure>

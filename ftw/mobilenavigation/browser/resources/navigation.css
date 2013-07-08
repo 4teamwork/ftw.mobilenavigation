@@ -18,6 +18,7 @@
 .mobileButtons a.selected {
   background-color: #000000;
 }
+.mobileButtons #toggle_slidenavi,
 .mobileButtons #toggle_navigation {
   background-position: 16px 16px;
 }
@@ -28,30 +29,43 @@
 
 /* @group mobile navigation */
 
+div.slideNavi.loading,
+.globalnav,
 #portal-globalnav.mobileNavigation {
   position:absolute;
   top: 0;
   margin-top: 56px;
+  background-color: #DDD;
   width: 100%;
   display: none;
-  z-index: 3;
+  z-index: 5;
 }
 
+.globalnav li,
 #portal-globalnav.mobileNavigation li {
   display: block;
   position: relative;
 }
+.globalnav li a,
 #portal-globalnav.mobileNavigation li a {
   display: block;
   padding: 1em;
   border: none;
+  background-color: #DDDDDD;
   border-top: 1px solid #000;
   margin-right: 42px;
   overflow: hidden;
 }
+.globalnav li a.slide,
+.globalnav li.noChildren a,
 #portal-globalnav.mobileNavigation li.noChildren a,
 #portal-globalnav.mobileNavigation li a.loadChildren {
   margin-right: 0;
+}
+.globalnav li a.slide:hover,
+.globalnav li a.slideBack:hover,
+#portal-globalnav.mobileNavigation li a.loadChildren:hover {
+  text-decoration: none;
 }
 #portal-globalnav.mobileNavigation li a.loadChildren {
   position: absolute;
@@ -89,15 +103,58 @@
 }
 
 /* Overwrite default selected styling in globalnav */
+.globalnav .selected a,
+.globalnav a:hover,
 #portal-globalnav.mobileNavigation .selected a,
 #portal-globalnav.mobileNavigation a:hover {
   background: #DDDDDD;
   color: #205C90;
 }
+.globalnav .selected > a,
+.globalnav > a:hover,
 #portal-globalnav.mobileNavigation .selected > a,
 #portal-globalnav.mobileNavigation > a:hover {
   background: #205C90;
   color: #FFFFFF;
+}
+
+/* @end */
+
+/* @group slide navigation */
+
+.globalnav {
+  display: block;
+}
+div.slideNavi.loading {
+  background-image: url(++resource++ftw.mobilenavigation/spinner_big.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 200px;
+  display: block;
+}
+#slider-container .slideNavi {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+#slider-container .globalnav  li {
+  display: block;
+}
+#slider-container .globalnav a.slideBack {
+  background: url(slide-back.png) no-repeat left center #DDDDDD;
+  padding-left: 40px;
+  margin-right: 0;
+  border-bottom: 1px solid #000;
+}
+#slider-container .globalnav a.slide {
+  background: url(expand-navi.png) no-repeat center center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  padding: 0;
 }
 
 /* @end */
@@ -135,6 +192,7 @@
   #portal-globalnav {
     display: block !important;
   }
+  .globalnav,
   #portal-globalnav > li > ul,
   #portal-globalnav .loadChildren {
     display: none !important;

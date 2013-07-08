@@ -8,6 +8,14 @@ There are following mobile_buttons in portal_actions defined:
 - Toggle searchbox (default searchbox)
 - Toggle special navigation (special navigation, using AJAX to expand children)
 
+Navigation types
+================
+
+You can choose between:
+
+- Expandable navigation (install profile `default`)
+- Sliding navigation (install profile `slide navigation`)
+
 Screenshots
 ===========
 
@@ -20,6 +28,10 @@ With just a litte CSS you can adjust the mobile navigation to your theme:
 
 .. image:: https://github.com/4teamwork/ftw.mobilenavigation/raw/master/docs/screenshot_other1.png
 .. image:: https://github.com/4teamwork/ftw.mobilenavigation/raw/master/docs/screenshot_other2.png
+
+Here is an example for the sliding navigation:
+
+.. image:: https://github.com/4teamwork/ftw.mobilenavigation/raw/master/docs/screenshot_slider.png
 
 
 Links
