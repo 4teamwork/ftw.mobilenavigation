@@ -4,7 +4,8 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Disable diazo for ajax request.
+  [Julian Infanger]
 
 
 1.1.2 (2013-06-26)

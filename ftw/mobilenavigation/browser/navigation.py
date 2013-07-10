@@ -6,6 +6,9 @@ from zope.publisher.browser import BrowserView
 class UpdateMobileNavigation(BrowserView):
 
     def __call__(self):
+        # Disable theming for ajax requests
+        self.request.response.setHeader('X-Theme-Disabled', 'True')
+
         subnavi = '<ul>'
         level = int(self.request.form.get('level', '1'))
         if level == 0:
