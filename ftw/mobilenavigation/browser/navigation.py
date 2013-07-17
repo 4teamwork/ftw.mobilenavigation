@@ -1,5 +1,8 @@
 import Missing
+from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.publisher.browser import BrowserView
 
 
@@ -54,3 +57,19 @@ class UpdateMobileNavigation(BrowserView):
             classes.append('noChildren')
         classes.append('level%s' % level)
         return ' '.join(classes)
+
+
+class SliderNavigation(UpdateMobileNavigation):
+
+    template = ViewPageTemplateFile('slider.pt')
+
+    def __call__(self):
+        # Disable theming for ajax requests
+        self.request.response.setHeader('X-Theme-Disabled', 'True')
+
+        self.parent = None
+        if not IPloneSiteRoot.providedBy(self.context):
+            self.parent = aq_parent(aq_inner(self.context))
+        self.children = self.sub_objects(self.context)
+
+        return self.template()
