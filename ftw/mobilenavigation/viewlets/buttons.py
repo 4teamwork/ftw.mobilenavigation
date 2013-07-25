@@ -20,6 +20,7 @@ class MobileButtons(ViewletBase):
                         'title': action['title'],
                         'description': action['description'],
                         'action': action['url'],
+                        'target': action['link_target'],
                         'selected': False,
                         'icon': None,
                         'extra': {'id': aid,

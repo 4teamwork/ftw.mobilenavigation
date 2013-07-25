@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Added link_target to mobile buttons.
+  [Julian Infanger]
+
 - Added slide navigation.
   [Julian Infanger]
 
