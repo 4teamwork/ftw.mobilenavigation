@@ -145,6 +145,7 @@ div.slideNavi.loading {
   padding-left: 40px;
   margin-right: 0;
   border-bottom: 1px solid #000;
+  float: left;
 }
 #slider-container .globalnav a.slide {
   background: url(expand-navi.png) no-repeat center center;
