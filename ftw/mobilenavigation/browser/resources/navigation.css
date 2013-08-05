@@ -194,7 +194,7 @@ div.slideNavi.loading {
     display: block !important;
   }
   .globalnav,
-  #portal-globalnav > li > ul,
+  #portal-globalnav > li.expanded > ul,
   #portal-globalnav .loadChildren {
     display: none !important;
   }

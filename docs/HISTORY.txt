@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Fixed css selector to avoid conflicts with ftw.dropdownmenu.
+  [Julian Infanger]
+
 - Added link_target to mobile buttons.
   [Julian Infanger]
 
