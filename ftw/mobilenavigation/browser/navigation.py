@@ -24,7 +24,7 @@ class UpdateMobileNavigation(BrowserView):
         subnavi += '</ul>'
         return subnavi
 
-    def sub_objects(self, parent, level=0):
+    def sub_objects(self, parent, level=0, query=None):
         """ Returns the sub objects of a given parent.
         Checks if the objects should be listed in navi.
         """
@@ -36,7 +36,7 @@ class UpdateMobileNavigation(BrowserView):
         objs = []
         properties = getToolByName(self.context, 'portal_properties')
         hidden_types = properties.navtree_properties.metaTypesNotToList
-        for brain in parent.getFolderContents():
+        for brain in parent.getFolderContents(query):
             if brain.portal_type not in hidden_types:
                 if getattr(brain, 'exclude_from_nav', False) in [Missing.Value, False]:
                     obj = brain.getObject()

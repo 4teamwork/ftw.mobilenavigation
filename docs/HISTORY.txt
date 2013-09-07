@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Navigation views: allow to pass in a query for additional filtering / sorting.
+  [jone]
+
 - Fixed css selector to avoid conflicts with ftw.dropdownmenu.
   [Julian Infanger]
 
