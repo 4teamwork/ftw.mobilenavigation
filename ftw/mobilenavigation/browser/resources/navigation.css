@@ -174,10 +174,16 @@ div.slideNavi.loading {
   }
 
   #portal-personaltools {
+    width: 100%;
     position: absolute;
     margin-top: 52px;
     background-color: transparent;
   }
+
+  #portal-personaltools a {
+    font-size: 150%;
+  }
+
   #portal-searchbox {
     position: absolute;
     top: 0;

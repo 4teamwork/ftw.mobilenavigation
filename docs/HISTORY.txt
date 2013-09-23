@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Make personaltools menu use 100% width and increase font size.
+  [jone]
+
 - Navigation views: allow to pass in a query for additional filtering / sorting.
   [jone]
 
