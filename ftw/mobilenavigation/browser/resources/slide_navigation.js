@@ -18,7 +18,7 @@ jQuery(function($) {
     var container = $('#slider-container');
     var slider = container.find('.slideNavi');
 
-    slider.after('<div class="slideNavi loading" style="right:-100%">&nbsp;</div>')
+    slider.after('<div class="slideNavi loading" style="right:-100%">&nbsp;</div>');
     slider.animate({left: '-100%'});
     $('div.slideNavi.loading').animate({left: 0}, function(){
       slider.remove();
@@ -35,7 +35,7 @@ jQuery(function($) {
     var container = $('#slider-container');
     var slider = container.find('.slideNavi');
 
-    slider.after('<div class="slideNavi loading" style="left:-100%">&nbsp;</div>')
+    slider.after('<div class="slideNavi loading" style="left:-100%">&nbsp;</div>');
     slider.animate({right: '-100%'});
     $('div.slideNavi.loading').animate({left: 0}, function(){
       slider.remove();
@@ -51,7 +51,7 @@ jQuery(function($) {
     close_opened(me);
     me.toggleClass('selected');
     var container = $('#slider-container');
-    if (container.length==0) {
+    if (container.length===0) {
       container = $('<div id="slider-container" style="display: none">' +
                     '<div class="slideNavi loading">&nbsp;</div></div>');
       $('.mobileButtons').after(container);

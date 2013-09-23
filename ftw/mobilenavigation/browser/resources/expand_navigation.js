@@ -1,5 +1,5 @@
 function load_children(element, parent) {
-  var level = 0
+  var level = 0;
   if (parent.hasClass('level0')) {level = 1;}
   if (parent.hasClass('level1')) {level = 2;}
   if (parent.hasClass('level2')) {level = 3;}
@@ -16,7 +16,7 @@ function load_children(element, parent) {
       if (textStatus == 'success') {
         var result = $(data);
         load_navi_buttons(result);
-        if (level == 0) {
+        if (level === 0) {
           parent.replaceWith(result);
         }
         else {
@@ -80,7 +80,7 @@ jQuery(function($) {
 
   $('#toggle_navigation').click(function(e){
     e.preventDefault();
-    var me = $(this)
+    var me = $(this);
     close_opened(me);
     me.toggleClass('selected');
     $('#portal-globalnav').toggle();
@@ -92,7 +92,7 @@ jQuery(function($) {
     var parent = me.parent('li');
 
     var children = parent.find('ul:first');
-    if (children.length == 0) {
+    if (children.length === 0) {
       load_children(me, parent);
     }
     parent.toggleClass('expanded');

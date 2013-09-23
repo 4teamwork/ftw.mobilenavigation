@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Fix javascript errors.
+  [jone]
+
 - Make personaltools menu use 100% width and increase font size.
   [jone]
 

@@ -14,7 +14,7 @@ jQuery(function($) {
 
   $('#toggle_usermenu').click(function(e){
     e.preventDefault();
-    var me = $(this)
+    var me = $(this);
     close_opened(me);
     me.toggleClass('selected');
     $('#portal-personaltools dd.actionMenuContent').toggle();
@@ -22,7 +22,7 @@ jQuery(function($) {
 
   $('#toggle_search').click(function(e){
     e.preventDefault();
-    var me = $(this)
+    var me = $(this);
     close_opened(me);
     me.toggleClass('selected');
     $('#portal-searchbox').toggle();
