@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2 (unreleased)
-----------------
+1.2.0 (2013-09-24)
+------------------
 
 - Fix javascript errors.
   [jone]
