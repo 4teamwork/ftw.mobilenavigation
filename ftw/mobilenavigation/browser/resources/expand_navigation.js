@@ -40,12 +40,12 @@ function load_navi_buttons(section) {
 
 function is_mobile() {
   if (window.matchMedia == undefined) {
-    if (screen.width <= 767) {
+    if (screen.width <= 769) {
       return true;
     }
     return false;
   }
-  else if (window.matchMedia("(max-width: 767px)").matches) {
+  else if (window.matchMedia("(max-width: 769px)").matches) {
     return true;
   }
   return false;
@@ -66,7 +66,7 @@ function initialize_mobile_navi() {
     }
   }
   else {
-    // if the browser is resized bigger than 767 px
+    // if the browser is resized bigger than 769 px
     $('#portal-globalnav').removeClass('mobileNavigation');
   }
 }

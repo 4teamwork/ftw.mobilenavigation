@@ -162,7 +162,7 @@ div.slideNavi.loading {
 
 /* @group responsive */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .mobileButtons {
     display: block;
     z-index: 4;
@@ -194,7 +194,7 @@ div.slideNavi.loading {
     padding: 1em;
   }
 }
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 770px) {
   /* fix navi (ugly) */
   #portal-globalnav {
     display: block !important;
