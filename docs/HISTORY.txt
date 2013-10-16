@@ -4,7 +4,7 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Changed breakpoint to enable mobile navigation to 770px.
+- Changed breakpoint to enable mobile navigation to 769px.
   [Julian Infanger]
 
 
