@@ -16,7 +16,7 @@ function load_children(element, parent) {
       if (textStatus == 'success') {
         // make sure there is an <ul> loaded (at position 0)
         var result = 'Could not load navigation children.'
-        if (data.search('<ul>') == 0) {
+        if (data.search('<ul') == 0) {
           result = $(data);
         }
         load_navi_buttons(result);
