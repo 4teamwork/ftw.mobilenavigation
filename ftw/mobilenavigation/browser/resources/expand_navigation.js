@@ -14,7 +14,11 @@ function load_children(element, parent) {
     data: {level: level},
     success : function(data, textStatus, XMLHttpRequest) {
       if (textStatus == 'success') {
-        var result = $(data);
+        // make sure there is an <ul> loaded (at position 0)
+        var result = 'Could not load navigation children.'
+        if (data.search('<ul>') == 0) {
+          result = $(data);
+        }
         load_navi_buttons(result);
         if (level === 0) {
           parent.replaceWith(result);

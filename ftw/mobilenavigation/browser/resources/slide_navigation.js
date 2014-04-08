@@ -4,7 +4,12 @@ function load_slider(url, container, fallback) {
     url : url,
     success : function(data, textStatus, XMLHttpRequest) {
       if (textStatus == 'success') {
-        container.html($(data));
+        // make sure there is <div class="slideNavi"> loaded (at position 0)
+        result = 'Could not load navigation children.'
+        if (data.search('<div class="slideNavi"') == 0) {
+          result = $(data);
+        }
+        container.html(result);
         fallback;
       }
     }

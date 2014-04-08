@@ -4,7 +4,9 @@ Changelog
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Check the navigations markup in js. Only load the navigation
+  children if there is the right markup.
+  [Julian Infanger]
 
 
 1.2.1 (2013-10-17)
