@@ -73,3 +73,23 @@ class TestView(unittest.TestCase):
         self.assertEqual(
             self.portal.f1.unrestrictedTraverse('load_children')(),
             '<ul><li class="noChildren level3"><a href="http://nohost/plone/f1/folder1"></a></li></ul>')
+
+    def test_view_is_appended_if_property_is_set(self):
+        properties = getToolByName(self.portal, 'portal_properties')
+        properties.site_properties.typesUseViewActionInListings=('Folder')
+
+        self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1/view"></a></li></ul>',
+            self.portal.unrestrictedTraverse('load_children')())
+
+    def test_view_is_not_appended_if_property_is_not_set(self):
+        properties = getToolByName(self.portal, 'portal_properties')
+        properties.site_properties.typesUseViewActionInListings=()
+
+        self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>',
+            self.portal.unrestrictedTraverse('load_children')())

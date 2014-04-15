@@ -12,14 +12,21 @@ class UpdateMobileNavigation(BrowserView):
         # Disable theming for ajax requests
         self.request.response.setHeader('X-Theme-Disabled', 'True')
 
+        properties = getToolByName(self.context, 'portal_properties')
+        view_action_types = properties.site_properties.getProperty(
+            'typesUseViewActionInListings', ())
+
         subnavi = '<ul>'
         level = int(self.request.form.get('level', '1'))
         if level == 0:
             subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
         for obj in self.sub_objects(self.context, level=level):
+            url = obj.absolute_url()
+            if obj.portal_type in view_action_types:
+                url = obj.absolute_url() + '/view'
             subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
                 self.get_css_classes(obj),
-                obj.absolute_url(),
+                url,
                 obj.Title())
         subnavi += '</ul>'
         return subnavi
