@@ -1,9 +1,14 @@
+import cgi
 import Missing
 from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.publisher.browser import BrowserView
+
+
+def escape_html(text):
+    return cgi.escape(text)
 
 
 class UpdateMobileNavigation(BrowserView):
@@ -27,7 +32,7 @@ class UpdateMobileNavigation(BrowserView):
             subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
                 self.get_css_classes(obj),
                 url,
-                obj.Title())
+                escape_html(obj.Title()))
         subnavi += '</ul>'
         return subnavi
 
