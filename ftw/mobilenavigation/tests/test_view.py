@@ -93,3 +93,11 @@ class TestView(unittest.TestCase):
         self.assertEqual(
             '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>',
             self.portal.unrestrictedTraverse('load_children')())
+
+    def test_html_chars_are_escaped(self):
+        self.portal.f1.invokeFactory(id='subfolder1',
+                                     type_name='Folder',
+                                     title='<b>SubFolder1</b>')
+        self.assertEqual(
+            '<ul><li class="noChildren level1"><a href="http://nohost/plone/f1/subfolder1">&lt;b&gt;SubFolder1&lt;/b&gt;</a></li></ul>',
+            self.portal.f1.unrestrictedTraverse('load_children')())
