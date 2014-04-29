@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.3 (unreleased)
+1.2.3 (2014-04-29)
 ------------------
 
 - Escape HTML chars in mobile navigation.
