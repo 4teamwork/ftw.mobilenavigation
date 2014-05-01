@@ -33,6 +33,12 @@ Here is an example for the sliding navigation:
 
 .. image:: https://github.com/4teamwork/ftw.mobilenavigation/raw/master/docs/screenshot_slider.png
 
+Uninstall
+=========
+
+This package provides an uninstall Generic Setup profile, however, it will
+not uninstall the package dependencies.
+Make sure to uninstall the dependencies if you no longer use them.
 
 Links
 =====

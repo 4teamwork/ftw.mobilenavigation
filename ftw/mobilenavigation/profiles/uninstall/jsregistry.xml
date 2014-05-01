@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts">
+  <javascript id="++resource++ftw.mobilenavigation/navigation.js" remove="True"/>
+  <javascript id="++resource++ftw.mobilenavigation/expand_navigation.js" remove="True"/>
+  <javascript id="++resource++ftw.mobilenavigation/slide_navigation.js" remove="True"/>
+</object>
