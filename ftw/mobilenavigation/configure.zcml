@@ -1,8 +1,14 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="ftw.mobilenavigation">
+
+  <!-- include package dependencies -->
+  <include package="z3c.autoinclude" file="meta.zcml" />
+
+  <five:registerPackage package="." initialize=".initialize" />
 
   <include package=".browser" />
   <include package=".upgrades" />
@@ -23,6 +29,14 @@
       title="ftw.mobilenavigation: slide navigation"
       directory="profiles/slide"
       description="Installs the ftw.mobilenavigation package and enables slide navigation"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Uninstall ftw.mobilenavigation"
+      directory="profiles/uninstall"
+      description="Uninstalls the ftw.mobilenavigation package."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
