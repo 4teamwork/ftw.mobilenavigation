@@ -3,8 +3,10 @@
       <a tal:attributes="id button/extra/id;
                          href button/action;
                          title button/description;
-                         target button/target|nothing"
-         tal:content="button/title"
-         />
+                         target button/target|nothing">
+        <span class="hiddenStructure"
+              tal:content="button/title"
+              />
+      </a>
     </li>
 </ul>

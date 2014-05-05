@@ -4,6 +4,9 @@ Changelog
 1.2.4 (unreleased)
 ------------------
 
+- Added invisible title to mobile buttons, to improve accessibility.
+  [Julian Infanger]
+
 - Add uninstall profile.
   [deif]
 

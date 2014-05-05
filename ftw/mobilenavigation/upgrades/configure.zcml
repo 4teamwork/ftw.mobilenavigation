@@ -1,6 +1,9 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <include package="ftw.upgrade" file="meta.zcml" />
 
     <!-- 1009 -> 1010 -->
     <genericsetup:upgradeStep
@@ -40,5 +43,12 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <upgrade-step:importProfile
+        title="Add title to mobilebuttons"
+        profile="ftw.mobilenavigation:default"
+        source="1100"
+        destination="1101"
+        directory="profiles/1101"
+        />
 
 </configure>
