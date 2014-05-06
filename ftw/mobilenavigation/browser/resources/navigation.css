@@ -18,6 +18,9 @@
 .mobileButtons a.selected {
   background-color: #000000;
 }
+.mobileButtons a > .hiddenStructure {
+  text-indent: -2000em;
+}
 .mobileButtons #toggle_slidenavi,
 .mobileButtons #toggle_navigation {
   background-position: 16px 16px;

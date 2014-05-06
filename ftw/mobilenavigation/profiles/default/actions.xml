@@ -5,7 +5,7 @@
   <object name="mobile_buttons" meta_type="CMF Action Category">
     <object name="toggle_search" meta_type="CMF Action"
             i18n:domain="ftw.mobilenavigation">
-      <property name="title" i18n:translate=""></property>
+      <property name="title" i18n:translate="">Toggle search</property>
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:#</property>
       <property name="icon_expr"></property>
@@ -18,7 +18,7 @@
 
     <object name="toggle_usermenu" meta_type="CMF Action"
             i18n:domain="ftw.mobilenavigation">
-      <property name="title" i18n:translate=""></property>
+      <property name="title" i18n:translate="">Toggle usermenu</property>
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:#</property>
       <property name="icon_expr"></property>
@@ -31,7 +31,7 @@
 
     <object name="toggle_navigation" meta_type="CMF Action"
             i18n:domain="ftw.mobilenavigation">
-      <property name="title" i18n:translate=""></property>
+      <property name="title" i18n:translate="">Toggle navigation</property>
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:${globals_view/navigationRootUrl}/load_children</property>
       <property name="icon_expr"></property>
@@ -44,7 +44,7 @@
 
     <object name="toggle_slidenavi" meta_type="CMF Action"
             i18n:domain="ftw.mobilenavigation">
-      <property name="title" i18n:translate=""></property>
+      <property name="title" i18n:translate="">Toggle navigation</property>
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:${object_url}/slider_navi</property>
       <property name="icon_expr"></property>
