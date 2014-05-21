@@ -116,3 +116,25 @@ class TestView(unittest.TestCase):
             '<a href="http://nohost/plone/f1"></a>'
             '</li>'
             '</ul>')
+
+    def test_show_parent_navi_when_on_default_page(self):
+        homepage = self.portal.get(
+            self.portal.invokeFactory(id='homepage', type_name='Folder',
+                                      title='Homepage'))
+        self.portal._setProperty('default_page', 'homepage', 'string')
+
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            self.portal.unrestrictedTraverse('load_children')(),
+            homepage.unrestrictedTraverse('load_children')(),)
+
+    def test_slider_show_parent_navi_when_on_default_page(self):
+        homepage = self.portal.get(
+            self.portal.invokeFactory(id='homepage', type_name='Folder',
+                                      title='Homepage'))
+        self.portal._setProperty('default_page', 'homepage', 'string')
+
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            self.portal.unrestrictedTraverse('slider_navi')(),
+            homepage.unrestrictedTraverse('slider_navi')(),)

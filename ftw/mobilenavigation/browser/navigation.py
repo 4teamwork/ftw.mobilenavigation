@@ -23,11 +23,19 @@ class UpdateMobileNavigation(BrowserView):
         view_action_types = properties.site_properties.getProperty(
             'typesUseViewActionInListings', ())
 
+        context = self.context
+        if isDefaultPage(aq_parent(aq_inner(context)), context):
+            # When asked for the navigation of a default page, return
+            # the navigation of its parent, because the user is actually
+            # on the parent but viewing the default page and the base-url
+            # makes the request be fired on the default page.
+            context = aq_parent(aq_inner(context))
+
         subnavi = '<ul>'
         level = int(self.request.form.get('level', '1'))
         if level == 0:
             subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
-        for obj in self.sub_objects(self.context, level=level):
+        for obj in self.sub_objects(context, level=level):
             url = obj.absolute_url()
             if obj.portal_type in view_action_types:
                 url = obj.absolute_url() + '/view'
@@ -89,9 +97,18 @@ class SliderNavigation(UpdateMobileNavigation):
         # Disable theming for ajax requests
         self.request.response.setHeader('X-Theme-Disabled', 'True')
 
+        context = self.context
+        if isDefaultPage(aq_parent(aq_inner(context)), context):
+            # When asked for the navigation of a default page, return
+            # the navigation of its parent, because the user is actually
+            # on the parent but viewing the default page and the base-url
+            # makes the request be fired on the default page.
+            context = aq_parent(aq_inner(context))
+
         self.parent = None
-        if not IPloneSiteRoot.providedBy(self.context):
-            self.parent = aq_parent(aq_inner(self.context))
-        self.children = self.sub_objects(self.context)
+        if not IPloneSiteRoot.providedBy(context):
+            self.parent = aq_parent(aq_inner(context))
+
+        self.children = self.sub_objects(context)
 
         return self.template()

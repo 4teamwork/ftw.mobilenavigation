@@ -4,6 +4,9 @@ Changelog
 1.2.4 (unreleased)
 ------------------
 
+- List parent navigation on default pages.
+  [jone]
+
 - Do not list default pages in navigation.
   [jone]
 
