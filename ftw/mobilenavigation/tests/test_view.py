@@ -101,3 +101,40 @@ class TestView(unittest.TestCase):
         self.assertEqual(
             '<ul><li class="noChildren level1"><a href="http://nohost/plone/f1/subfolder1">&lt;b&gt;SubFolder1&lt;/b&gt;</a></li></ul>',
             self.portal.f1.unrestrictedTraverse('load_children')())
+
+    def test_default_pages_are_not_listed(self):
+        self.portal.invokeFactory(id='homepage', type_name='Folder',
+                                  title='Homepage')
+        self.portal._setProperty('default_page', 'homepage', 'string')
+
+        # level 0 loads the global navigation
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            self.portal.unrestrictedTraverse('load_children')(),
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0">'
+            '<a href="http://nohost/plone/f1"></a>'
+            '</li>'
+            '</ul>')
+
+    def test_show_parent_navi_when_on_default_page(self):
+        homepage = self.portal.get(
+            self.portal.invokeFactory(id='homepage', type_name='Folder',
+                                      title='Homepage'))
+        self.portal._setProperty('default_page', 'homepage', 'string')
+
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            self.portal.unrestrictedTraverse('load_children')(),
+            homepage.unrestrictedTraverse('load_children')(),)
+
+    def test_slider_show_parent_navi_when_on_default_page(self):
+        homepage = self.portal.get(
+            self.portal.invokeFactory(id='homepage', type_name='Folder',
+                                      title='Homepage'))
+        self.portal._setProperty('default_page', 'homepage', 'string')
+
+        self.portal.REQUEST.form.update({'level': '0'})
+        self.assertEqual(
+            self.portal.unrestrictedTraverse('slider_navi')(),
+            homepage.unrestrictedTraverse('slider_navi')(),)

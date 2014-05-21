@@ -1,10 +1,12 @@
 import cgi
+
 import Missing
 from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.publisher.browser import BrowserView
+from plone.app.layout.navigation.defaultpage import isDefaultPage
 
 
 def escape_html(text):
@@ -21,11 +23,19 @@ class UpdateMobileNavigation(BrowserView):
         view_action_types = properties.site_properties.getProperty(
             'typesUseViewActionInListings', ())
 
+        context = self.context
+        if isDefaultPage(aq_parent(aq_inner(context)), context):
+            # When asked for the navigation of a default page, return
+            # the navigation of its parent, because the user is actually
+            # on the parent but viewing the default page and the base-url
+            # makes the request be fired on the default page.
+            context = aq_parent(aq_inner(context))
+
         subnavi = '<ul>'
         level = int(self.request.form.get('level', '1'))
         if level == 0:
             subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
-        for obj in self.sub_objects(self.context, level=level):
+        for obj in self.sub_objects(context, level=level):
             url = obj.absolute_url()
             if obj.portal_type in view_action_types:
                 url = obj.absolute_url() + '/view'
@@ -48,11 +58,19 @@ class UpdateMobileNavigation(BrowserView):
         objs = []
         properties = getToolByName(self.context, 'portal_properties')
         hidden_types = properties.navtree_properties.metaTypesNotToList
-        for brain in parent.getFolderContents(query):
-            if brain.portal_type not in hidden_types:
-                if getattr(brain, 'exclude_from_nav', False) in [Missing.Value, False]:
-                    obj = brain.getObject()
-                    objs.append(obj)
+        for brain in parent.getFolderContents(contentFilter=query):
+            if brain.portal_type in hidden_types:
+                continue
+            if getattr(brain, 'exclude_from_nav', False) \
+                    not in [Missing.Value, False]:
+                continue
+
+            obj = brain.getObject()
+            if isDefaultPage(aq_parent(aq_inner(obj)), obj):
+                continue
+
+            objs.append(obj)
+
         return objs
 
     def get_css_classes(self, obj):
@@ -79,9 +97,18 @@ class SliderNavigation(UpdateMobileNavigation):
         # Disable theming for ajax requests
         self.request.response.setHeader('X-Theme-Disabled', 'True')
 
+        context = self.context
+        if isDefaultPage(aq_parent(aq_inner(context)), context):
+            # When asked for the navigation of a default page, return
+            # the navigation of its parent, because the user is actually
+            # on the parent but viewing the default page and the base-url
+            # makes the request be fired on the default page.
+            context = aq_parent(aq_inner(context))
+
         self.parent = None
-        if not IPloneSiteRoot.providedBy(self.context):
-            self.parent = aq_parent(aq_inner(self.context))
-        self.children = self.sub_objects(self.context)
+        if not IPloneSiteRoot.providedBy(context):
+            self.parent = aq_parent(aq_inner(context))
+
+        self.children = self.sub_objects(context)
 
         return self.template()
