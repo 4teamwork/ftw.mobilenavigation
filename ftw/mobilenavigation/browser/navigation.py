@@ -1,10 +1,12 @@
 import cgi
+
 import Missing
 from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.publisher.browser import BrowserView
+from plone.app.layout.navigation.defaultpage import isDefaultPage
 
 
 def escape_html(text):
@@ -48,11 +50,19 @@ class UpdateMobileNavigation(BrowserView):
         objs = []
         properties = getToolByName(self.context, 'portal_properties')
         hidden_types = properties.navtree_properties.metaTypesNotToList
-        for brain in parent.getFolderContents(query):
-            if brain.portal_type not in hidden_types:
-                if getattr(brain, 'exclude_from_nav', False) in [Missing.Value, False]:
-                    obj = brain.getObject()
-                    objs.append(obj)
+        for brain in parent.getFolderContents(contentFilter=query):
+            if brain.portal_type in hidden_types:
+                continue
+            if getattr(brain, 'exclude_from_nav', False) \
+                    not in [Missing.Value, False]:
+                continue
+
+            obj = brain.getObject()
+            if isDefaultPage(aq_parent(aq_inner(obj)), obj):
+                continue
+
+            objs.append(obj)
+
         return objs
 
     def get_css_classes(self, obj):

@@ -4,6 +4,9 @@ Changelog
 1.2.4 (unreleased)
 ------------------
 
+- Do not list default pages in navigation.
+  [jone]
+
 - Added invisible title to mobile buttons, to improve accessibility.
   [Julian Infanger]
 
