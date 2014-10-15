@@ -1,5 +1,6 @@
 function load_children(element, parent) {
   var level = 0;
+
   if (parent.hasClass('level0')) {level = 1;}
   if (parent.hasClass('level1')) {level = 2;}
   if (parent.hasClass('level2')) {level = 3;}
@@ -22,6 +23,12 @@ function load_children(element, parent) {
         load_navi_buttons(result);
         if (level === 0) {
           parent.replaceWith(result);
+
+          var lis = result.find('li');
+          parent.find('li').each(function(i, o){
+            lis.eq(i).addClass($(o).attr('class'));
+          });
+
         }
         else {
           parent.removeClass('loading');
