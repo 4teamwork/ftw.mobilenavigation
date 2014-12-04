@@ -36,7 +36,7 @@ function load_children(element, parent) {
   getChildrenRequest.done(function(data) {
     //check if the response contains ul elements
     if ($('ul', data).length === 0) {
-      result = $(data);
+      var result = $(data);
       //Remove background-image style
       parent.children('.loadChildren').attr('style', function(idx, style) {
         if(style) {
