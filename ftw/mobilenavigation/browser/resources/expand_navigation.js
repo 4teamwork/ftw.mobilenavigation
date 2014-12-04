@@ -1,3 +1,7 @@
+var spinner;
+var naviParent;
+var naviElement;
+
 function load_children(element, parent) {
 
   //get level from parent element
@@ -16,7 +20,6 @@ function load_children(element, parent) {
     level = 0;
   } else {
     // get next level
-    console.log(level);
     level = parseInt(level);
     level++;
   }
@@ -34,6 +37,12 @@ function load_children(element, parent) {
     //check if the response contains ul elements
     if ($('ul', data).length === 0) {
       result = $(data);
+      //Remove background-image style
+      parent.children('.loadChildren').attr('style', function(idx, style) {
+        if(style) {
+          return style.replace(/background-image[^;]+;?/g, '');
+        }
+      });
       load_navi_buttons(result);
       if (level === 0) {
         parent.replaceWith(result);
@@ -50,8 +59,20 @@ function load_children(element, parent) {
     }
   });
 
-  getChildrenRequest.fail(function() {
-
+  getChildrenRequest.fail(function(jqXHR, textStatus) {
+    if (!(naviParent && naviElement)) {
+      naviParent = parent;
+      naviElement = element;
+    } else {
+      naviParent = parent;
+      naviElement = element;
+    }
+    console.error("Error while loading mobilenavigation", textStatus);
+    //Try again if loading children failed
+    naviParent.children('.loadChildren').die().css('background-image', "url(" + spinner.src + ")");
+    window.setTimeout(function() {
+      load_children(naviElement, naviParent);
+    }, 5000);
   });
 }
 
@@ -79,20 +100,24 @@ function is_mobile() {
 
 function initialize_mobile_navi() {
   var body = $("body");
-
-  if (is_mobile()) {
-    if (!body.hasClass('mobileNaviLoaded')) {
-      // load globalnav buttons
-      load_children($('#toggle_navigation'), $('#portal-globalnav'));
-      load_navi_buttons($('#portal-globalnav.mobileNavigation'));
-      body.addClass('mobileNaviLoaded');
+  spinner = new Image();
+  spinner.src = '++resource++ftw.mobilenavigation/spinner.gif';
+  spinner.id = 'spinner-preload';
+  spinner.onload = function() {
+    if (is_mobile()) {
+      if (!body.hasClass('mobileNaviLoaded')) {
+        // load globalnav buttons
+        load_children($('#toggle_navigation'), $('#portal-globalnav'));
+        load_navi_buttons($('#portal-globalnav.mobileNavigation'));
+        body.addClass('mobileNaviLoaded');
+      } else {
+        $('#portal-globalnav').addClass('mobileNavigation');
+      }
     } else {
-      $('#portal-globalnav').addClass('mobileNavigation');
+      // if the browser is resized bigger than 769 px
+      $('#portal-globalnav').removeClass('mobileNavigation');
     }
-  } else {
-    // if the browser is resized bigger than 769 px
-    $('#portal-globalnav').removeClass('mobileNavigation');
-  }
+  };
 }
 
 jQuery(function($) {

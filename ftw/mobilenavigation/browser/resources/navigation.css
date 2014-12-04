@@ -1,5 +1,9 @@
 /* @group buttons */
 
+#spinner-preload {
+  display: none;
+}
+
 .mobileButtons {
   position: absolute;
   background-color: #AAAAAA;
