@@ -1,14 +1,18 @@
 var direction = {
   next : {
-    slideNavi : right,
-    animation : left
+    slideNavi : 'right',
+    animation : 'left'
   },
   prev : {
-    slideNavi : left,
-    animation : right
+    slideNavi : 'left',
+    animation : 'right'
   }
 };
 
+var settings = {
+  //!only works with percentage
+  animationOffset : '95%'
+};
 
 function load_slider(url, container, fallback) {
   var getChildrenRequest = $.ajax({
@@ -21,7 +25,7 @@ function load_slider(url, container, fallback) {
     if ($('div.slideNavi', data).length === 0) {
       container.html($(data));
       if (fallback) {
-        fallback.call();
+        fallback.call(this);
       }
     }
   });
@@ -32,16 +36,15 @@ function load_slider(url, container, fallback) {
 }
 
 function slide(direction) {
-  e.preventDefault();
   var animationSettings = {};
-  animationSettings[direction.animation] = '-100%';
+  animationSettings[direction.animation] = '-' + settings.animationOffset;
   var me = $(this);
   var container = $('#slider-container');
   var slider = container.find('.slideNavi');
-  slider.after('<div class="slideNavi loading" style="' + direction.slideNavi + ':-100%">&nbsp;</div>');
+  slider.after('<div class="slideNavi loading" style="' + direction.slideNavi + ':-' + settings.animationOffset + '">&nbsp;</div>');
   slider.animate(animationSettings);
   $('div.slideNavi.loading').animate({
-    left: 0
+    left: 100 - (parseInt(settings.animationOffset)) + '%'
   }, function() {
     slider.remove();
     load_slider(me.attr('href') + '/slider_navi', container, function() {
@@ -52,11 +55,13 @@ function slide(direction) {
 
 jQuery(function($) {
   $('a.slide').live('click', function(e) {
-    slide(direction.next);
+    e.preventDefault();
+    slide.call(this,direction.next);
   });
 
   $('a.slideBack').live('click', function(e) {
-    slide(direction.prev);
+    e.preventDefault();
+    slide.call(this, direction.prev);
   });
 
   $('#toggle_slidenavi').click(function(e) {
