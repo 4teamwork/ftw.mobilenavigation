@@ -16,6 +16,10 @@ Changelog
 - Replace doubled code in plonetheme.onegov
   [Kevin Bieri]
 
+- Add title to mobilebutton when description is not present.
+  For accessibility reasons, title attribute on element can't be empty.
+  [Kevin Bieri]
+
 
 1.3.1 (2014-10-24)
 ------------------
