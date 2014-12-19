@@ -1,62 +1,98 @@
+var spinner;
+var naviParent;
+var naviElement;
+
 function load_children(element, parent) {
-  var level = 0;
 
-  if (parent.hasClass('level0')) {level = 1;}
-  if (parent.hasClass('level1')) {level = 2;}
-  if (parent.hasClass('level2')) {level = 3;}
-
-  if (level > 0) {
-    parent.addClass('loading');
+  //get level from parent element
+  var level = '';
+  var parentClass = parent.attr('class');
+  if (parentClass) {
+    level = $.grep(parentClass.split(" "), function(elm, idx) {
+      //check if parent element has level class
+      return elm.indexOf('level') === 0;
+    }).join().replace(/^\D+/g, '');
   }
 
-  $.ajax({
-    type : 'POST',
-    url : element.attr('href'),
-    data: {level: level},
-    success : function(data, textStatus, XMLHttpRequest) {
-      if (textStatus == 'success') {
-        // make sure there is an <ul> loaded (at position 0)
-        var result = 'Could not load navigation children.'
-        if (data.search('<ul') == 0) {
-          result = $(data);
-        }
-        load_navi_buttons(result);
-        if (level === 0) {
-          parent.replaceWith(result);
+  //parent has no level
+  if (level === '') {
+    parent.addClass('loading');
+    level = 0;
+  } else {
+    // get next level
+    level = parseInt(level);
+    level++;
+  }
 
-          var lis = result.find('li');
-          parent.find('li').each(function(i, o){
-            lis.eq(i).addClass($(o).attr('class'));
-          });
+  //make request for loading the next level
+  var getChildrenRequest = $.ajax({
+    type: 'POST',
+    url: element.attr('href'),
+    data: {
+      level: level
+    },
+  });
 
+  getChildrenRequest.done(function(data) {
+    //check if the response contains ul elements
+    if ($('ul', data).length === 0) {
+      var result = $(data);
+      //Remove background-image style
+      parent.children('.loadChildren').attr('style', function(idx, style) {
+        if(style) {
+          return style.replace(/background-image[^;]+;?/g, '');
         }
-        else {
-          parent.removeClass('loading');
-          parent.append(result);
-        }
+      });
+      load_navi_buttons(result);
+      if (level === 0) {
+        parent.replaceWith(result);
+
+        var lis = result.find('li');
+        parent.find('li').each(function(idx, elm) {
+          lis.eq(idx).addClass($(elm).attr('class'));
+        });
+
+      } else {
+        parent.removeClass('loading');
+        parent.append(result);
       }
     }
+  });
+
+  getChildrenRequest.fail(function(jqXHR, textStatus) {
+    if (!(naviParent && naviElement)) {
+      naviParent = parent;
+      naviElement = element;
+    } else {
+      naviParent = parent;
+      naviElement = element;
+    }
+    console.error("Error while loading mobilenavigation", textStatus);
+    //Try again if loading children failed
+    naviParent.children('.loadChildren').die().css('background-image', "url(" + spinner.src + ")");
+    window.setTimeout(function() {
+      load_children(naviElement, naviParent);
+    }, 5000);
   });
 }
 
 function load_navi_buttons(section) {
-  section.find('li').each(function(a,b){
-    element = $(b);
+  section.find('li').each(function(idx, elm) {
+    element = $(elm);
     if (!element.hasClass('noChildren')) {
       var href = element.find('a:first').attr('href') + '/load_children';
-      element.append($('<a class="loadChildren" href="'+href+'">&nbsp;</a>'));
+      element.append($('<a class="loadChildren" href="' + href + '">&nbsp;</a>'));
     }
   });
 }
 
 function is_mobile() {
-  if (window.matchMedia == undefined) {
+  if (window.matchMedia === undefined) {
     if (screen.width <= 769) {
       return true;
     }
     return false;
-  }
-  else if (window.matchMedia("(max-width: 769px)").matches) {
+  } else if (window.matchMedia("(max-width: 769px)").matches) {
     return true;
   }
   return false;
@@ -64,22 +100,24 @@ function is_mobile() {
 
 function initialize_mobile_navi() {
   var body = $("body");
-
-  if (is_mobile()) {
-    if (!body.hasClass('mobileNaviLoaded')) {
-      // load globalnav buttons
-      load_children($('#toggle_navigation'), $('#portal-globalnav'));
-      load_navi_buttons($('#portal-globalnav.mobileNavigation'));
-      body.addClass('mobileNaviLoaded');
+  spinner = new Image();
+  spinner.src = '++resource++ftw.mobilenavigation/spinner.gif';
+  spinner.id = 'spinner-preload';
+  spinner.onload = function() {
+    if (is_mobile()) {
+      if (!body.hasClass('mobileNaviLoaded')) {
+        // load globalnav buttons
+        load_children($('#toggle_navigation'), $('#portal-globalnav'));
+        load_navi_buttons($('#portal-globalnav.mobileNavigation'));
+        body.addClass('mobileNaviLoaded');
+      } else {
+        $('#portal-globalnav').addClass('mobileNavigation');
+      }
+    } else {
+      // if the browser is resized bigger than 769 px
+      $('#portal-globalnav').removeClass('mobileNavigation');
     }
-    else {
-      $('#portal-globalnav').addClass('mobileNavigation');
-    }
-  }
-  else {
-    // if the browser is resized bigger than 769 px
-    $('#portal-globalnav').removeClass('mobileNavigation');
-  }
+  };
 }
 
 jQuery(function($) {
@@ -89,7 +127,7 @@ jQuery(function($) {
     initialize_mobile_navi();
   });
 
-  $('#toggle_navigation').click(function(e){
+  $('#toggle_navigation').click(function(e) {
     e.preventDefault();
     var me = $(this);
     close_opened(me);
@@ -97,7 +135,7 @@ jQuery(function($) {
     $('#portal-globalnav').toggle();
   });
 
-  $('a.loadChildren').live('click', function(e){
+  $('a.loadChildren').live('click', function(e) {
     e.preventDefault();
     var me = $(this);
     var parent = me.parent('li');

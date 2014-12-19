@@ -4,7 +4,17 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bug when theme has no mobilesupport.
+  [Kevin Bieri]
+
+- Add errorhandling for loading subnavigation.
+  [Kevin Bieri]
+
+- Implement level-depth independence.
+  [Kevin Bieri]
+
+- Replace doubled code in plonetheme.onegov
+  [Kevin Bieri]
 
 
 1.3.1 (2014-10-24)
