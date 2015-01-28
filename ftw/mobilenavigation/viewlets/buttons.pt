@@ -2,7 +2,7 @@
     <li tal:repeat="button view/buttons">
       <a tal:attributes="id button/extra/id;
                          href button/action;
-                         title button/description;
+                         title python: button.get('description') or button.get('title');
                          target button/target|nothing">
         <span class="hiddenStructure"
               tal:content="button/title"
