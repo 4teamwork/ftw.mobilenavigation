@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.1 (unreleased)
+1.4.1 (2015-02-27)
 ------------------
 
 - Load spinner relative to site root.
