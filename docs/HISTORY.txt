@@ -4,7 +4,9 @@ Changelog
 1.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Load spinner relative to site root.
+  This fixes a BadRequest when in portal_factory.
+  [jone]
 
 
 1.4.0 (2015-02-24)

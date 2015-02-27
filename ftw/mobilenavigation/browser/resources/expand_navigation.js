@@ -101,7 +101,7 @@ function is_mobile() {
 function initialize_mobile_navi() {
   var body = $("body");
   spinner = new Image();
-  spinner.src = '++resource++ftw.mobilenavigation/spinner.gif';
+  spinner.src = portal_url + '/++resource++ftw.mobilenavigation/spinner.gif';
   spinner.id = 'spinner-preload';
   spinner.onload = function() {
     if (is_mobile()) {
