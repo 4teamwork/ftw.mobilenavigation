@@ -43,9 +43,9 @@ Make sure to uninstall the dependencies if you no longer use them.
 Links
 =====
 
-- Github project repository: https://github.com/4teamwork/ftw.mobilenavigation
-- Issue tracker: https://github.com/4teamwork/ftw.mobilenavigation/issues
-- Package on pypi: http://pypi.python.org/pypi/ftw.mobilenavigation
+- Github: https://github.com/4teamwork/ftw.mobilenavigation
+- Issues: https://github.com/4teamwork/ftw.mobilenavigation/issues
+- Pypi: http://pypi.python.org/pypi/ftw.mobilenavigation
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.mobilenavigation
 
 
