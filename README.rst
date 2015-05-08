@@ -55,7 +55,3 @@ Copyright
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
 ``ftw.mobilenavigation`` is licensed under GNU General Public License, version 2.
-
-.. image:: https://cruel-carlota.pagodabox.com/c50273c3410a55868d0e3ab9d0f469f2
-   :alt: githalytics.com
-   :target: http://githalytics.com/4teamwork/ftw.mobilenavigation
