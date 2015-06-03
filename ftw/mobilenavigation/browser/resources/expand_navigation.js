@@ -135,7 +135,7 @@ jQuery(function($) {
     $('#portal-globalnav').toggle();
   });
 
-  $('a.loadChildren').on('click', $(this), function(e) {
+  var click_handler = function(e) {
     e.preventDefault();
     var me = $(this);
     var parent = me.parent('li');
@@ -145,6 +145,12 @@ jQuery(function($) {
       load_children(me, parent);
     }
     parent.toggleClass('expanded');
-  });
+  };
+
+  if (typeof $.fn.on !== undefined) {
+    $(document).on('click', 'a.loadChildren', click_handler);
+  } else {
+    $('a.loadChildren').live('click', click_handler);
+  }
 
 });
