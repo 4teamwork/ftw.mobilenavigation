@@ -54,12 +54,12 @@ function slide(direction) {
 }
 
 jQuery(function($) {
-  $('a.slide').live('click', function(e) {
+  $('a.slide').on('click', $(this), function(e) {
     e.preventDefault();
     slide.call(this,direction.next);
   });
 
-  $('a.slideBack').live('click', function(e) {
+  $('a.slideBack').on('click', $(this), function(e) {
     e.preventDefault();
     slide.call(this, direction.prev);
   });

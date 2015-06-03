@@ -120,28 +120,11 @@ function initialize_mobile_navi() {
   };
 }
 
-function loadChildrenOnClick(){
-  $('a.loadChildren').click(function(e) {
-    e.preventDefault();  //this prevents the user from navigating to the someOtherPage.htm
-    var me = $(this);
-    var parent = me.parent('li');
-
-    var children = parent.find('ul:first');
-    if (children.length === 0) {
-      load_children(me, parent);
-    }
-    parent.toggleClass('expanded');
-    loadChildrenOnClick();
-  });
-}
-
 jQuery(function($) {
   initialize_mobile_navi();
-  loadChildrenOnClick();
 
   $(window).resize(function() {
     initialize_mobile_navi();
-    loadChildrenOnClick();
   });
 
   $('#toggle_navigation').click(function(e) {
@@ -152,6 +135,16 @@ jQuery(function($) {
     $('#portal-globalnav').toggle();
   });
 
+  $('a.loadChildren').on('click', $(this), function(e) {
+    e.preventDefault();
+    var me = $(this);
+    var parent = me.parent('li');
 
+    var children = parent.find('ul:first');
+    if (children.length === 0) {
+      load_children(me, parent);
+    }
+    parent.toggleClass('expanded');
+  });
 
 });
