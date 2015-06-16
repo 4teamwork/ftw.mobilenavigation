@@ -53,16 +53,26 @@ function slide(direction) {
   });
 }
 
+
 jQuery(function($) {
-  $('a.slide').live('click', function(e) {
+
+  var slide_handler = function(e) {
     e.preventDefault();
     slide.call(this,direction.next);
-  });
+  }
 
-  $('a.slideBack').live('click', function(e) {
+  var slide_back_handler = function(e) {
     e.preventDefault();
     slide.call(this, direction.prev);
-  });
+  }
+
+  if (typeof $.fn.on !== undefined) {
+    $(document).on('click', 'a.slide', slide_handler);
+    $(document).on('click', 'a.slideBack', slide_back_handler);
+  } else {
+    $('a.slide').live('click', click_handler);
+    $('a.slideBack').live('click', click_back_handler);
+  }
 
   $('#toggle_slidenavi').click(function(e) {
     e.preventDefault();
