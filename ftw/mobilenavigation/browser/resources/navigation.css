@@ -41,7 +41,7 @@ div.slideNavi.loading,
 #portal-globalnav.mobileNavigation {
   position:absolute;
   top: 0;
-  margin-top: 56px;
+  margin-top: 0;
   background-color: #DDD;
   width: 100%;
   display: none;
@@ -139,6 +139,15 @@ div.slideNavi.loading {
   min-height: 200px;
   display: block;
 }
+#slider-container {
+  overflow: auto;
+  position: fixed;
+  top:      56px;
+  height:   100%;
+  height:   calc(100% - 56px);
+  width:    100%;
+  z-index:  10;
+}
 #slider-container .slideNavi {
   position: absolute;
   top: 0;
@@ -170,6 +179,10 @@ div.slideNavi.loading {
 /* @group responsive */
 
 @media screen and (max-width: 769px) {
+  body.slideNaviOpen {
+    overflow: hidden !important;
+  }
+
   .mobileButtons {
     display: block;
     z-index: 4;

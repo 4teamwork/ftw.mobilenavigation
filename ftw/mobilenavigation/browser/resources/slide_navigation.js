@@ -79,6 +79,7 @@ jQuery(function($) {
     var me = $(this);
     close_opened(me);
     me.toggleClass('selected');
+    $('body').toggleClass('slideNaviOpen');
     var container = $('#slider-container');
     if (container.length === 0) {
       container = $('<div id="slider-container" style="display: none">' +
