@@ -2,8 +2,6 @@
 <object name="portal_css">
 
   <stylesheet id="++resource++ftw.mobilenavigation/navigation.css"
-              media=""
-              enabled="True"
               applyPrefix="True"
               />
 

@@ -50,5 +50,11 @@
         destination="1101"
         directory="profiles/1101"
         />
+    <include package="ftw.upgrade" file="meta.zcml" />
+
+    <upgrade-step:directory
+        profile="ftw.mobilenavigation:default"
+        directory="."
+        />
 
 </configure>
