@@ -37,8 +37,7 @@
 /* @group mobile navigation */
 
 div.slideNavi.loading,
-.globalnav,
-#portal-globalnav.mobileNavigation {
+.globalnav {
   position:absolute;
   top: 0;
   margin-top: 0;
@@ -132,6 +131,10 @@ div.slideNavi.loading,
 .globalnav {
   display: block;
 }
+.mobileNavigation.globalnav {
+  padding-bottom: 56px;
+  padding-bottom: calc(0px);
+}
 div.slideNavi.loading {
   background-image: url(++resource++ftw.mobilenavigation/spinner_big.gif);
   background-repeat: no-repeat;
@@ -143,6 +146,7 @@ div.slideNavi.loading {
   overflow: auto;
   position: fixed;
   top:      56px;
+  left:     0;
   height:   100%;
   height:   calc(100% - 56px);
   width:    100%;
