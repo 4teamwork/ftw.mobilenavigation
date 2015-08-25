@@ -20,14 +20,14 @@
     <tal:children tal:repeat="child children">
       <li tal:define="has_children python:view.sub_objects(child)"
           tal:attributes="class python:not has_children and 'noChildren' or None">
-        <a tal:attributes="href child/absolute_url;
-                           title child/Title;">
-          <span tal:content="child/Title" />
-        </a>
         <a tal:condition="has_children"
            tal:attributes="href child/absolute_url"
            class="slide">
           &nbsp;
+        </a>
+        <a tal:attributes="href child/absolute_url;
+                           title child/Title;">
+          <span tal:content="child/Title" />
         </a>
 
       </li>
