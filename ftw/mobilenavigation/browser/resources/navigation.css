@@ -37,11 +37,10 @@
 /* @group mobile navigation */
 
 div.slideNavi.loading,
-.globalnav,
-#portal-globalnav.mobileNavigation {
+.globalnav {
   position:absolute;
   top: 0;
-  margin-top: 56px;
+  margin-top: 0;
   background-color: #DDD;
   width: 100%;
   display: none;
@@ -132,12 +131,26 @@ div.slideNavi.loading,
 .globalnav {
   display: block;
 }
+.mobileNavigation.globalnav {
+  padding-bottom: 56px;
+  padding-bottom: calc(0px);
+}
 div.slideNavi.loading {
   background-image: url(++resource++ftw.mobilenavigation/spinner_big.gif);
   background-repeat: no-repeat;
   background-position: center center;
   min-height: 200px;
   display: block;
+}
+#slider-container {
+  overflow: auto;
+  position: fixed;
+  top:      56px;
+  left:     0;
+  height:   100%;
+  height:   calc(100% - 56px);
+  width:    100%;
+  z-index:  10;
 }
 #slider-container .slideNavi {
   position: absolute;
@@ -170,6 +183,10 @@ div.slideNavi.loading {
 /* @group responsive */
 
 @media screen and (max-width: 769px) {
+  body.slideNaviOpen {
+    overflow: hidden !important;
+  }
+
   .mobileButtons {
     display: block;
     z-index: 4;
