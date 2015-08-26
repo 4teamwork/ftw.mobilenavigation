@@ -159,12 +159,16 @@ div.slideNavi.loading {
 }
 #slider-container .globalnav  li {
   display: block;
+  clear:   both;
+}
+#slider-container .globalnav a.current {
+  margin-right: 0;
 }
 #slider-container .globalnav a.slideBack {
   background: url(slide-back.png) no-repeat left center #DDDDDD;
   padding-left: 40px;
   margin-right: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: none;
   float: left;
 }
 #slider-container .globalnav a.slide {
