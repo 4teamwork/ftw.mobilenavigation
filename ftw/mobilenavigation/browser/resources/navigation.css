@@ -169,11 +169,8 @@ div.slideNavi.loading {
 }
 #slider-container .globalnav a.slide {
   background: url(expand-navi.png) no-repeat center center;
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
   width: 48px;
-  min-width: 48px;
   height: 48px;
   padding: 0;
 }
