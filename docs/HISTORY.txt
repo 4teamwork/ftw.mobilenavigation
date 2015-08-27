@@ -4,7 +4,11 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use applyPrefix for css
+  [tschanzt]
+
+- Make slide navigation scrollable if necessary to view all menu items.
+  [Daniel Jowett]
 
 
 1.4.2 (2015-06-16)
