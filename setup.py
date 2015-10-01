@@ -41,6 +41,7 @@ setup(name='ftw.mobilenavigation',
       zip_safe=False,
 
       install_requires=[
+        'Plone',
         'setuptools',
         'ftw.upgrade',
         'Missing',
