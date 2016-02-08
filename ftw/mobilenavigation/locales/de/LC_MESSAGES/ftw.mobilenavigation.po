@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-05-05 12:49+0000\n"
+"POT-Creation-Date: 2016-02-08 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,7 +10,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: ftw.mobilenavigation\n"
 
 #: ./ftw/mobilenavigation/profiles/default/actions.xml
 #: ./ftw/mobilenavigation/upgrades/profiles/1101/actions.xml
@@ -26,3 +25,15 @@ msgstr "Suchfeld ausklappen"
 #: ./ftw/mobilenavigation/upgrades/profiles/1101/actions.xml
 msgid "Toggle usermenu"
 msgstr "Benutzermenu ausklappen"
+
+#. Default: "Subcontent : ${title}"
+#: ./ftw/mobilenavigation/browser/slider.pt:29
+msgid "label_child_content"
+msgstr "Untermenü: ${title}"
+
+#. Default: "Parent content: ${title}"
+#: ./ftw/mobilenavigation/browser/slider.pt:11
+msgid "label_parent_content"
+msgstr "Übergeordneter Inhalt: ${title}"
+
+
