@@ -171,6 +171,7 @@ div.slideNavi.loading {
   border-bottom: none;
   float: left;
 }
+
 #slider-container .globalnav a.slide {
   background: url(expand-navi.png) no-repeat center center;
   float: right;
