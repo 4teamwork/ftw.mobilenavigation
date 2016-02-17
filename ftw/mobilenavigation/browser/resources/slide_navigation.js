@@ -82,9 +82,10 @@ jQuery(function($) {
     $('body').toggleClass('slideNaviOpen');
     var container = $('#slider-container');
     if (container.length === 0) {
-      container = $('<div id="slider-container" style="display: none">' +
+      container = $('<div id="slider-container" style="display: none" aria-hidden="false">' +
         '<div class="slideNavi loading">&nbsp;</div></div>');
       $('.mobileButtons').after(container);
+      $(document).trigger("slidenavi-initialized");
     }
     container.toggle();
     if (me.hasClass('selected')) {
