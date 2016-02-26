@@ -4,6 +4,9 @@ Changelog
 1.4.4 (unreleased)
 ------------------
 
+- Improve accessibility of mobile buttons.
+  [Kevin Bieri]
+
 - Improve accessiblity by setting hiddenstructure link text for slide and slideback for slide navi.
   [mathias.leimgruber]
 
