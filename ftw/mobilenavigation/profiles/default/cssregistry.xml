@@ -5,6 +5,7 @@
               media=""
               enabled="True"
               applyPrefix="True"
+              expression="not:request/HTTP_X_FTW_THEMING|nothing"
               />
 
 </object>

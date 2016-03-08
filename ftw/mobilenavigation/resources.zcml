@@ -1,0 +1,9 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:theme="http://namespaces.zope.org/ftw.theming"
+    i18n_domain="ftw.mobilenavigation">
+
+    <include package="ftw.theming" file="meta.zcml" />
+    <theme:scss file="browser/resources/scss/mobilenavigation.scss" slot="addon" />
+
+</configure>

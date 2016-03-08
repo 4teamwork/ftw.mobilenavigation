@@ -92,7 +92,7 @@ function is_mobile() {
       return true;
     }
     return false;
-  } else if (window.matchMedia("(max-width: 769px)").matches) {
+  } else if (window.matchMedia("(max-width: 480px)").matches) {
     return true;
   }
   return false;
