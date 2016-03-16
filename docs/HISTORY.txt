@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.4 (unreleased)
+1.4.4 (2016-03-16)
 ------------------
 
 - Improve accessibility of mobile buttons.
