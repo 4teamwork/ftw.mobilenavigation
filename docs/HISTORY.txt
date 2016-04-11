@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.4.4 (2016-03-16)
-------------------
+1.4.5 (unreleased)
+-------------------
 
 - Apply compatibility for ftw.theming.
   [Kevin Bieri]
+
+1.4.4 (2016-03-16)
+------------------
 
 - Improve accessibility of mobile buttons.
   [Kevin Bieri]
