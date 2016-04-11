@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.4.5 (unreleased)
--------------------
+1.4.5 (2016-04-11)
+------------------
 
 - Apply compatibility for ftw.theming.
   [Kevin Bieri]
