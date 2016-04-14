@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.6 (unreleased)
+1.4.6 (2016-04-14)
 ------------------
 
 - Fix styling for multi level navigation.
