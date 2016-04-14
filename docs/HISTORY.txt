@@ -4,7 +4,8 @@ Changelog
 1.4.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix styling for multi level navigation.
+  [Kevin Bieri]
 
 
 1.4.5 (2016-04-11)

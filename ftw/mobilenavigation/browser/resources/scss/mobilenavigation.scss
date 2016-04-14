@@ -46,35 +46,61 @@
 
   display: none;
 
+  > li {
+    display: block;
+    float: none;
+    > a {
+      padding-right: 40px;
+    }
+  }
+
   li {
-    width: 100%;
-    a {
-      display: inline-block;
-      border: 0;
-    }
+    position: relative;
+  }
 
-    ul {
-      @include list();
-      display: none;
-    }
+  a {
+    @include no-link();
+  }
 
-    &.expanded {
-      ul {
-        display: block;
+  ul {
+    @include list();
+    display: none;
+    > li {
+      display: block;
+      float: none;
+      > a {
+        padding-right: 40px;
       }
-      .loadChildren {
-        @extend .fa-angle-down;
-      }
+    }
+  }
+
+  a {
+    border: 0;
+  }
+
+  .expanded {
+    > ul {
+      display: block;
+    }
+    > .loadChildren {
+      @extend .fa-angle-down;
     }
   }
 
   .loadChildren {
     @extend .fa-icon;
     @extend .fa-angle-right;
-    float: right;
+    margin-right: 0;
     width: $line-height-base;
-    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
+
+  @for $i from 1 through 10 {
+    .level#{$i} { padding-left: $i * $padding-horizontal; }
+  }
+
 }
 
 .navigation {
