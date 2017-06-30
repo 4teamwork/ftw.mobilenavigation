@@ -22,7 +22,9 @@ class TestView(unittest.TestCase):
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
 
     def test_portal_link(self):
         # if the object is the portal and its not level 0 there should not be returned anything.
@@ -37,7 +39,9 @@ class TestView(unittest.TestCase):
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>')
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>')
 
     def test_subfolder_hidden(self):
         # No link to toggle children if there are just objects not listed in navigation
@@ -47,7 +51,9 @@ class TestView(unittest.TestCase):
         ptool.navtree_properties.metaTypesNotToList = ('File')
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
 
     def test_subfolder_excluded(self):
         # No link to toggle children if the subfolder is excluded from navigation
@@ -57,7 +63,9 @@ class TestView(unittest.TestCase):
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="noChildren level0"><a href="http://nohost/plone/f1"></a></li></ul>')
 
     def test_level_3(self):
         # create a folder and a subfolder on portal
@@ -81,7 +89,9 @@ class TestView(unittest.TestCase):
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1/view"></a></li></ul>',
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="level0"><a href="http://nohost/plone/f1/view"></a></li></ul>',
             self.portal.unrestrictedTraverse('load_children')())
 
     def test_view_is_not_appended_if_property_is_not_set(self):
@@ -91,7 +101,9 @@ class TestView(unittest.TestCase):
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
-            '<ul id="portal-globalnav" class="mobileNavigation"><li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>',
+            '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0"><a href="http://nohost/plone">Home</a></li>'
+            '<li class="level0"><a href="http://nohost/plone/f1"></a></li></ul>',
             self.portal.unrestrictedTraverse('load_children')())
 
     def test_html_chars_are_escaped(self):
@@ -112,6 +124,8 @@ class TestView(unittest.TestCase):
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
             '<ul id="portal-globalnav" class="mobileNavigation">'
+            '<li class="noChildren level0">'
+            '<a href="http://nohost/plone">Home</a></li>'
             '<li class="noChildren level0">'
             '<a href="http://nohost/plone/f1"></a>'
             '</li>'
