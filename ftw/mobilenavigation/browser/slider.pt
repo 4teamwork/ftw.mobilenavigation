@@ -26,7 +26,7 @@
            tal:attributes="href child/absolute_url"
            class="slide">
            <span class="hiddenStructure" i18n:translate="label_child_content">
-            Subcontent : <tal:name i18n:name="title" tal:content="child/title" />
+            Subcontent : <tal:name i18n:name="title" tal:content="child/Title" />
            </span>
         </a>
         <a tal:attributes="href child/absolute_url;

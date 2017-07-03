@@ -1,12 +1,14 @@
-import cgi
-
-import Missing
 from Acquisition import aq_inner, aq_parent
+from plone.app.layout.navigation.defaultpage import isDefaultPage
+from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
+from zope.i18n import translate
 from zope.publisher.browser import BrowserView
-from plone.app.layout.navigation.defaultpage import isDefaultPage
+import cgi
+import Missing
 
 
 def escape_html(text):
@@ -36,13 +38,19 @@ class UpdateMobileNavigation(BrowserView):
         if level == 0:
             subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
         for obj in self.sub_objects(context, level=level):
-            url = obj.absolute_url()
-            if obj.portal_type in view_action_types:
+            is_action = isinstance(obj, ActionInfo)
+            if is_action:
+                url = obj['url']
+                title = translate(obj['title'], context=self.request)
+            else:
+                url = obj.absolute_url()
+                title = obj.Title()
+            if not is_action and obj.portal_type in view_action_types:
                 url = obj.absolute_url() + '/view'
             subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
                 self.get_css_classes(obj),
                 url,
-                escape_html(obj.Title()))
+                escape_html(title))
         subnavi += '</ul>'
         return subnavi
 
@@ -55,6 +63,10 @@ class UpdateMobileNavigation(BrowserView):
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         if parent == portal and level > 0:
             return []
+
+        if isinstance(parent, ActionInfo):
+            return []
+
         objs = []
         properties = getToolByName(self.context, 'portal_properties')
         hidden_types = properties.navtree_properties.metaTypesNotToList
@@ -71,6 +83,9 @@ class UpdateMobileNavigation(BrowserView):
 
             objs.append(obj)
 
+        if parent == portal:
+            self.prepend_actions(objs)
+
         return objs
 
     def get_css_classes(self, obj):
@@ -81,12 +96,26 @@ class UpdateMobileNavigation(BrowserView):
         level = int(self.request.form.get('level', '1'))
         classes = []
 
-        if not obj.isPrincipiaFolderish \
+        if isinstance(obj, ActionInfo) \
+                or not obj.isPrincipiaFolderish \
                 or len(self.sub_objects(obj)) == 0 \
                 or level >= 2:
             classes.append('noChildren')
         classes.append('level%s' % level)
         return ' '.join(classes)
+
+    def prepend_actions(self, items):
+        """ Taken from the `topLevelTabs` method."""
+        portal = getToolByName(self.context, 'portal_url').getPortalObject()
+        context_state = getMultiAdapter((portal, self.request),
+                                        name=u'plone_context_state')
+        actions = context_state.actions('portal_tabs')
+        if actions is not None:
+            for actionInfo in actions:
+                data = actionInfo.copy()
+                data['absolute_url'] = data['url']
+                data['Title'] = data['title']
+                items.insert(0, data)
 
 
 class SliderNavigation(UpdateMobileNavigation):
