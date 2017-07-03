@@ -110,6 +110,7 @@ class UpdateMobileNavigation(BrowserView):
         context_state = getMultiAdapter((portal, self.request),
                                         name=u'plone_context_state')
         actions = context_state.actions('portal_tabs')
+        actions.reverse()
         if actions is not None:
             for actionInfo in actions:
                 data = actionInfo.copy()

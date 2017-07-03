@@ -4,6 +4,9 @@ Changelog
 1.4.7 (unreleased)
 ------------------
 
+- Fix toplevel actions order.
+  [mathias.leimgruber]
+
 - Show toplevel actions in mobile navigation.
   [mathias.leimgruber]
 
