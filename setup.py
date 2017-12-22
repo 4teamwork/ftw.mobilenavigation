@@ -7,6 +7,7 @@ maintainer = 'Julian Infanger'
 
 tests_require = [
     'ftw.testing',
+    'plone.app.contenttypes',
     'plone.app.testing',
     ]
 
