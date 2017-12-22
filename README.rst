@@ -2,7 +2,7 @@ Introduction
 ============
 
 This product helps to create a responsive design.
-There are following mobile_buttons in portal_actions defined:
+The following actions are defined under portal_actions / mobile_buttons:
 
 - Toggle personaltools (default personaltools)
 - Toggle searchbox (default searchbox)
