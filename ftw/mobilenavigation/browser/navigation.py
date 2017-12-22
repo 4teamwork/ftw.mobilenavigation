@@ -1,14 +1,21 @@
 from Acquisition import aq_inner, aq_parent
-from plone.app.layout.navigation.defaultpage import isDefaultPage
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ftw.mobilenavigation.utils import IS_PLONE_5
+from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.i18n import translate
 from zope.publisher.browser import BrowserView
 import cgi
 import Missing
+
+if IS_PLONE_5:
+    from Products.CMFPlone.defaultpage import is_default_page as isDefaultPage
+else:
+    from plone.app.layout.navigation.defaultpage import isDefaultPage
 
 
 def escape_html(text):
@@ -21,9 +28,13 @@ class UpdateMobileNavigation(BrowserView):
         # Disable theming for ajax requests
         self.request.response.setHeader('X-Theme-Disabled', 'True')
 
-        properties = getToolByName(self.context, 'portal_properties')
-        view_action_types = properties.site_properties.getProperty(
-            'typesUseViewActionInListings', ())
+        if IS_PLONE_5:
+            registry = getUtility(IRegistry)
+            view_action_types = registry['plone.types_use_view_action_in_listings']
+        else:
+            properties = getToolByName(self.context, 'portal_properties')
+            view_action_types = properties.site_properties.getProperty(
+                'typesUseViewActionInListings', ())
 
         context = self.context
         if isDefaultPage(aq_parent(aq_inner(context)), context):
@@ -67,11 +78,19 @@ class UpdateMobileNavigation(BrowserView):
         if isinstance(parent, ActionInfo):
             return []
 
+        def _portal_type_is_hidden(portal_type):
+            if IS_PLONE_5:
+                registry = getUtility(IRegistry)
+                displayed_types = registry['plone.displayed_types']
+                return portal_type not in displayed_types
+
+            properties = getToolByName(self.context, 'portal_properties')
+            hidden_types = properties.navtree_properties.metaTypesNotToList
+            return portal_type in hidden_types
+
         objs = []
-        properties = getToolByName(self.context, 'portal_properties')
-        hidden_types = properties.navtree_properties.metaTypesNotToList
         for brain in parent.getFolderContents(contentFilter=query):
-            if brain.portal_type in hidden_types:
+            if _portal_type_is_hidden(brain.portal_type):
                 continue
             if getattr(brain, 'exclude_from_nav', False) \
                     not in [Missing.Value, False]:

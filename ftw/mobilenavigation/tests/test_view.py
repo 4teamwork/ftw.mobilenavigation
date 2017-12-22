@@ -1,8 +1,11 @@
 import unittest2 as unittest
 from ftw.mobilenavigation.testing import MOBILE_NAVIGATION_INTEGRATION_TESTING
+from ftw.mobilenavigation.utils import IS_PLONE_5
 from Products.CMFCore.utils import getToolByName
 from plone.app.testing import TEST_USER_ID, TEST_USER_NAME
 from plone.app.testing import login, setRoles
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 
 class TestView(unittest.TestCase):
@@ -47,8 +50,14 @@ class TestView(unittest.TestCase):
         # No link to toggle children if there are just objects not listed in navigation
         self.portal.f1.invokeFactory(id='file1', type_name='File')
         self.portal.REQUEST.form.update({'level': '0'})
-        ptool = getToolByName(self.portal, 'portal_properties')
-        ptool.navtree_properties.metaTypesNotToList = ('File')
+        if IS_PLONE_5:
+            registry = getUtility(IRegistry)
+            displayed_types = list(registry['plone.displayed_types'])
+            displayed_types.remove('File')
+            registry['plone.displayed_types'] = tuple(displayed_types)
+        else:
+            ptool = getToolByName(self.portal, 'portal_properties')
+            ptool.navtree_properties.metaTypesNotToList = ('File')
         self.assertEqual(
             self.portal.unrestrictedTraverse('load_children')(),
             '<ul id="portal-globalnav" class="mobileNavigation">'
@@ -58,7 +67,10 @@ class TestView(unittest.TestCase):
     def test_subfolder_excluded(self):
         # No link to toggle children if the subfolder is excluded from navigation
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
-        self.portal.f1.subfolder1.setExcludeFromNav(True)
+        if IS_PLONE_5:
+            self.portal.f1.subfolder1.exclude_from_nav = True
+        else:
+            self.portal.f1.subfolder1.setExcludeFromNav(True)
         self.portal.f1.subfolder1.reindexObject()
         self.portal.REQUEST.form.update({'level': '0'})
         self.assertEqual(
@@ -83,8 +95,12 @@ class TestView(unittest.TestCase):
             '<ul><li class="noChildren level3"><a href="http://nohost/plone/f1/folder1"></a></li></ul>')
 
     def test_view_is_appended_if_property_is_set(self):
-        properties = getToolByName(self.portal, 'portal_properties')
-        properties.site_properties.typesUseViewActionInListings=('Folder')
+        if IS_PLONE_5:
+            registry = getUtility(IRegistry)
+            registry['plone.types_use_view_action_in_listings'] = [u'Folder']
+        else:
+            properties = getToolByName(self.portal, 'portal_properties')
+            properties.site_properties.typesUseViewActionInListings=('Folder')
 
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
         self.portal.REQUEST.form.update({'level': '0'})
@@ -95,8 +111,12 @@ class TestView(unittest.TestCase):
             self.portal.unrestrictedTraverse('load_children')())
 
     def test_view_is_not_appended_if_property_is_not_set(self):
-        properties = getToolByName(self.portal, 'portal_properties')
-        properties.site_properties.typesUseViewActionInListings=()
+        if IS_PLONE_5:
+            registry = getUtility(IRegistry)
+            registry['plone.types_use_view_action_in_listings'] = []
+        else:
+            properties = getToolByName(self.portal, 'portal_properties')
+            properties.site_properties.typesUseViewActionInListings=()
 
         self.portal.f1.invokeFactory(id='subfolder1', type_name='Folder')
         self.portal.REQUEST.form.update({'level': '0'})
