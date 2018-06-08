@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.8 (unreleased)
+1.4.8 (2018-06-08)
 ------------------
 
 - Fix unicode error.
