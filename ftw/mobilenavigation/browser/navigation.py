@@ -3,6 +3,7 @@ from plone.app.layout.navigation.defaultpage import isDefaultPage
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 from zope.i18n import translate
@@ -33,10 +34,10 @@ class UpdateMobileNavigation(BrowserView):
             # makes the request be fired on the default page.
             context = aq_parent(aq_inner(context))
 
-        subnavi = '<ul>'
+        subnavi = u'<ul>'
         level = int(self.request.form.get('level', '1'))
         if level == 0:
-            subnavi = '<ul id="portal-globalnav" class="mobileNavigation">'
+            subnavi = u'<ul id="portal-globalnav" class="mobileNavigation">'
         for obj in self.sub_objects(context, level=level):
             is_action = isinstance(obj, ActionInfo)
             if is_action:
@@ -45,13 +46,19 @@ class UpdateMobileNavigation(BrowserView):
             else:
                 url = obj.absolute_url()
                 title = obj.Title()
+
+            # not all objects have the unicode url and titles
+            url = safe_unicode(url)
+            title = safe_unicode(title)
+
             if not is_action and obj.portal_type in view_action_types:
-                url = obj.absolute_url() + '/view'
-            subnavi += '<li class="%s"><a href="%s">%s</a></li>' % (
+                url = safe_unicode(obj.absolute_url() + '/view')
+
+            subnavi += u'<li class="{}"><a href="{}">{}</a></li>'.format(
                 self.get_css_classes(obj),
                 url,
                 escape_html(title))
-        subnavi += '</ul>'
+        subnavi += u'</ul>'
         return subnavi
 
     def sub_objects(self, parent, level=0, query=None):
