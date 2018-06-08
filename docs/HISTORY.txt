@@ -4,7 +4,8 @@ Changelog
 1.4.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix unicode error.
+  [tarnap]
 
 
 1.4.7 (2017-07-11)
